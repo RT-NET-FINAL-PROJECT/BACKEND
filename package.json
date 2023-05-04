@@ -4,7 +4,8 @@
   "description": "RT- NET",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --forceExit --detectOpenHandles",
+    "s-test": "sequelize db:drop --env test && sequelize db:create --env test && sequelize db:migrate --env test",
     "start": "node app.js"
   },
   "keywords": [],
