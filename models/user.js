@@ -77,7 +77,11 @@ module.exports = (sequelize, DataTypes) => {
           notNull: "RT dibutuhkan",
         },
       },
-      status_keluarga: DataTypes.ENUM,
+      status_keluarga: {
+        type: DataTypes.ENUM,
+        values: ["Kepala Keluarga", "Anggota Keluarga"],
+        defaultValue: "Kepala Keluarga",
+      },
       kkImg: DataTypes.STRING,
       ktpImg: DataTypes.STRING,
       photoUrl: DataTypes.STRING,

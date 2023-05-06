@@ -40,7 +40,11 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       deskripsi: DataTypes.TEXT,
-      kategori: DataTypes.ENUM,
+      kategori: {
+        type: DataTypes.ENUM,
+        values: ["pengumuman", "event"],
+        defaultValue: "pengumuman",
+      },
       lokasi: DataTypes.STRING,
       biaya: DataTypes.INTEGER,
       dibayar: DataTypes.BOOLEAN,
