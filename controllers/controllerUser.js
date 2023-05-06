@@ -69,16 +69,17 @@ class ControllerUser {
 
     static async findAllUser(req, res, next) {
         try {
-            const allUser = await User.findAll({
+            const allUser = await Rt.findAll({
                 include: [
                     {
-                        model: Rt
+                        model: User,
+                        attributes: { exclude: ['password'] } 
                     },
                 ],
                 order: [
                     ['createdAt', 'DESC']
                 ],
-                attributes: { exclude: ['password'] } 
+            
             });
             res.status(200).json(allUser);
         } catch (error) {
