@@ -1,0 +1,22 @@
+{
+    "Rts": [
+        {
+            "kepala_rt": "Bondan",
+            "rt": "04",
+            "rw": "012",
+            "kelurahan": "Bojong Pondok Terong",
+            "kecamatan": "Cipayung",
+            "kotaKabupaten": "Depok",
+            "provinsi": "Jawa barat"
+        },
+        {
+            "kepala_rt": "Heru",
+            "rt": "05",
+            "rw": "012",
+            "kelurahan": "Bojong Pondok Terong",
+            "kecamatan": "Cipayung",
+            "kotaKabupaten": "Depok",
+            "provinsi": "Jawa barat"
+        }
+    ]
+}
