@@ -4,19 +4,34 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Guest extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       // define association here
+      Guest.belongsTo(models.User, {
+        foreignKey: "user_id"
+      })
     }
   }
   Guest.init({
-    name: DataTypes.STRING,
-    user_id: DataTypes.INTEGER,
-    nomorKtp: DataTypes.STRING
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: "Nama dibutuhkan",
+        notNull: "Nama dibutuhkan"
+      }
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    nomorKtp: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: "Nomor KTP dibutuhkan",
+        notNull: "Nomor KTP dibutuhkan"
+      }
+    }
   }, {
     sequelize,
     modelName: 'Guest',
