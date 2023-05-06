@@ -2,7 +2,7 @@ const { Event } = require('../models')
 class ControllerEvent {
     static async findAllEvent(req, res, next) {
         try {
-           res.send("masuk event")
+            res.send("masuk event")
         } catch (error) {
             next(error)
         }
