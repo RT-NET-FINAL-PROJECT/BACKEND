@@ -11,11 +11,28 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Vehicle.belongsTo(models.User, {
+        foreignKey: "user_id"
+      })
     }
   }
   Vehicle.init({
-    name: DataTypes.STRING,
-    nomorPolisi: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: "Nama kendaraan dibutuhkan",
+        notNull: "Nama kendaraan dibutuhkan"
+      }
+    },
+    nomorPolisi: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: "Nomor plat kendaraan dibutuhkan",
+        notNull: "Nomor plat kendaraan dibutuhkan"
+      }
+    },
     user_id: DataTypes.INTEGER
   }, {
     sequelize,

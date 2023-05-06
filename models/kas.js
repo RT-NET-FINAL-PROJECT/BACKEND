@@ -4,18 +4,30 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Kas extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       // define association here
+      Kas.belongsTo(models.Rt, {
+        foreignKey: "rt_id"
+      })
     }
   }
   Kas.init({
-    rt_id: DataTypes.INTEGER,
-    nominal: DataTypes.INTEGER,
+    rt_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: "RT dibutuhkan",
+        notNull: "RT dibutuhkan"
+      }
+    },
+    nominal: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: "Nominal dana dibutuhkan",
+        notNull: "Nominal dana dibutuhkan"
+      }
+    },
     alur: DataTypes.ENUM,
     deskripsi: DataTypes.STRING
   }, {
