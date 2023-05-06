@@ -15,11 +15,10 @@ router.get('/', (req, res) => {
 
 //USER WARGA
 router.post('/login', ControllerUser.login)
-router.post('/register', ControllerUser.register)
+router.post('/users/register', ControllerUser.register)
 
 
 router.get('/users', ControllerUser.findAllUser)
-router.post('/users', ControllerUser.createUser)
 router.put('/users', ControllerUser.updateUser)
 router.get('/users/:id', ControllerUser.detailUser)
 router.delete('/users/:id', ControllerUser.deleteUser)
