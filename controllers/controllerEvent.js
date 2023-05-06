@@ -1,4 +1,4 @@
-// const { Event } = require('../models')
+const { Event } = require('../models')
 class ControllerEvent {
     static async findAllEvent(req, res, next) {
         try {
