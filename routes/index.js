@@ -10,8 +10,4 @@ router.use(eventRouter)
 router.use(paymentRouter)
 router.use(rtRouter)
 
-
-
-
-
 module.exports = router
