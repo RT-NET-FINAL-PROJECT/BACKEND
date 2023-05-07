@@ -157,6 +157,15 @@ class ControllerUser {
 
     static async createUser(req, res, next) {
         try {
+            const {
+                namaLengkap,
+                nomorTelp,
+                email,
+                password,
+                nomorKtp,
+                status_keluarga,
+                rt_id
+            } = req.body;
 
         } catch (error) {
             next(error)
