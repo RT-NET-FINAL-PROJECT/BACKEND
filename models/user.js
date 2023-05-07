@@ -17,7 +17,13 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Payment, {
         foreignKey: "user_id",
       });
+      User.hasMany(models.Service, {
+        foreignKey: "user_id",
+      });
       User.hasMany(models.Guest, {
+        foreignKey: "user_id",
+      });
+      User.hasOne(models.Submission, {
         foreignKey: "user_id",
       });
       User.belongsTo(models.Rt, {
