@@ -4,7 +4,6 @@ const { createToken } = require('../helpers/jwt')
 class ControllerUser {
     static async register(req, res, next) {
         try {
-            console.log(req.body);
             const {
                 namaLengkap,
                 nomorTelp,
@@ -107,7 +106,8 @@ class ControllerUser {
 
             const response = {
                 access_token,
-                email: findUser.email
+                email: findUser.email,
+                userId: findUser.id
             }
 
             res.status(200).json(response)

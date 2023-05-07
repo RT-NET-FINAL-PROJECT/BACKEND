@@ -7,6 +7,4 @@ router.put('/event', ControllerEvent.updateEvent)
 router.get('/event/:id', ControllerEvent.detailEvent)
 router.delete('/event/:id', ControllerEvent.deleteEvent)
 
-
-
 module.exports = router
