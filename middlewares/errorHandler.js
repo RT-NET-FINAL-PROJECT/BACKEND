@@ -1,6 +1,7 @@
 module.exports = async (error, req, res, next) => {
   let message, status;
 
+  console.log(error);
   switch (error.name) {
     case "NO_INPUT":
       message = "Fields required";

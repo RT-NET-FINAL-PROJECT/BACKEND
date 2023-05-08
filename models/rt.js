@@ -16,6 +16,9 @@ module.exports = (sequelize, DataTypes) => {
       Rt.hasMany(models.Post, {
         foreignKey: "rt_id",
       });
+      Rt.hasMany(models.Submission, {
+        foreignKey: "rt_id",
+      });
     }
   }
   Rt.init(
