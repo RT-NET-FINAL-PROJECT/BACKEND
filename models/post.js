@@ -45,6 +45,9 @@ module.exports = (sequelize, DataTypes) => {
         values: ["pengumuman", "event"],
         defaultValue: "pengumuman",
       },
+      imageUrl: {
+        type: DataTypes.STRING,
+      },
       lokasi: DataTypes.STRING,
       biaya: DataTypes.INTEGER,
       dibayar: DataTypes.BOOLEAN,

@@ -3,7 +3,7 @@
         {
             "kepala_rt": "Bondan",
             "nik_rt": "120298",
-            "rt": "04",
+            "rt": "01",
             "rw": "012",
             "kelurahan": "Bojong Pondok Terong",
             "kecamatan": "Cipayung",
@@ -13,7 +13,7 @@
         {
             "kepala_rt": "Heru",
             "nik_rt": "1202988",
-            "rt": "05",
+            "rt": "02",
             "rw": "012",
             "kelurahan": "Bojong Pondok Terong",
             "kecamatan": "Cipayung",
@@ -26,10 +26,335 @@
             "namaLengkap": "admin",
             "nomorTelp": "08123456789",
             "role": "Admin",
-            "rt_id" : 1,
+            "rt_id": 1,
             "email": "admin@admin.com",
             "password": "admin123",
-            "status_keluarga": "Kepala Keluarga"
+            "status_keluarga": "Kepala Keluarga",
+            "status": true
+        },
+        {
+            "namaLengkap": "Bondan Herutomo",
+            "nomorTelp": "081234567890",
+            "role": "Rt",
+            "rt_id": 1,
+            "email": "bondan@gmail.com",
+            "password": "bondan23",
+            "status_keluarga": "Kepala Keluarga",
+            "nomorKtp": "120298",
+            "nomorKk": "120192393",
+            "status": true
+        },
+        {
+            "namaLengkap": "Budi",
+            "nomorTelp": "081234567891",
+            "role": "Warga",
+            "rt_id": 1,
+            "email": "budi@gmail.com",
+            "password": "budi123",
+            "status_keluarga": "Anggota Keluarga",
+            "nomorKtp": "102913932",
+            "nomorKk": "120192393",
+            "status": true
+        },
+        {
+            "namaLengkap": "Citra",
+            "nomorTelp": "081234567892",
+            "role": "Warga",
+            "rt_id": 1,
+            "email": "citra@gmail.com",
+            "password": "citra123",
+            "status_keluarga": "Anggota Keluarga",
+            "nomorKtp": "102913933",
+            "nomorKk": "120192393",
+            "status": true
+        },
+        {
+            "namaLengkap": "Dina",
+            "nomorTelp": "081234567893",
+            "role": "Warga",
+            "rt_id": 2,
+            "email": "dina@gmail.com",
+            "password": "dina123",
+            "status_keluarga": "Anggota Keluarga",
+            "nomorKtp": "102913934",
+            "nomorKk": "120192393",
+            "status": true
+        },
+        {
+            "namaLengkap": "Eka",
+            "nomorTelp": "081234567894",
+            "role": "Warga",
+            "rt_id": 2,
+            "email": "eka@gmail.com",
+            "password": "eka123",
+            "status_keluarga": "Anggota Keluarga",
+            "nomorKtp": "102913935",
+            "nomorKk": "120192393",
+            "status": true
+        },
+        {
+            "namaLengkap": "Fajar",
+            "nomorTelp": "081234567895",
+            "role": "Warga",
+            "rt_id": 2,
+            "email": "fajar@gmail.com",
+            "password": "fajar123",
+            "status_keluarga": "Anggota Keluarga",
+            "nomorKtp": "102913936",
+            "nomorKk": "120192393",
+            "status": true
+        },
+        {
+            "namaLengkap": "Gina",
+            "nomorTelp": "081234567896",
+            "role": "Sekertariat",
+            "rt_id": 1,
+            "email": "gina@gmail.com",
+            "password": "gina123",
+            "status_keluarga": "Anggota Keluarga",
+            "nomorKtp": "102913937",
+            "nomorKk": "120192393",
+            "status": true
+        },
+        {
+            "namaLengkap": "Umay",
+            "nomorTelp": "0812345678119",
+            "role": "Sekertariat",
+            "rt_id": 2,
+            "email": "umay@gmail.com",
+            "password": "umay123",
+            "status_keluarga": "Anggota Keluarga",
+            "nomorKtp": "1029139371",
+            "nomorKk": "1201923933",
+            "status": true
+        }
+    ],
+    "Posts": [
+        {
+            "name": "Kerja Bakti Warga",
+            "rt_id": "2",
+            "deskripsi": "Kerja bakti membersihkan mushollah",
+            "kategori": "pengumuman",
+            "lokasi": "Mushollah Al-Kautsar",
+            "biaya": "0",
+            "dibayar": false,
+            "imageUrl": "https://example.com/image.jpg"
+        },
+        {
+            "name": "Sosialisasi Pencegahan COVID-19",
+            "rt_id": "1",
+            "deskripsi": "Kegiatan sosialisasi tentang cara pencegahan COVID-19",
+            "kategori": "event",
+            "lokasi": "RTH Bumi Serpong Damai",
+            "biaya": "0",
+            "dibayar": false,
+            "imageUrl": "https://example.com/image.jpg"
+        },
+        {
+            "name": "Turnamen Futsal Warga",
+            "rt_id": "2",
+            "deskripsi": "Turnamen futsal antar warga RT 02",
+            "kategori": "event",
+            "lokasi": "Lapangan Futsal RT 02",
+            "biaya": "50000",
+            "dibayar": false,
+            "imageUrl": "https://example.com/image.jpg"
+        },
+        {
+            "name": "Perayaan 17 Agustus",
+            "rt_id": "1",
+            "deskripsi": "Perayaan kemerdekaan RI",
+            "kategori": "event",
+            "lokasi": "Lapangan Merdeka",
+            "biaya": "20000",
+            "dibayar": false,
+            "imageUrl": "https://example.com/image.jpg"
+        },
+        {
+            "name": "Pemilihan Umum",
+            "rt_id": "1",
+            "deskripsi": "Pemilihan umum ketua RT",
+            "kategori": "event",
+            "lokasi": "Kantor RT",
+            "biaya": "0",
+            "dibayar": false,
+            "imageUrl": "https://example.com/image.jpg"
+        },
+        {
+            "name": "Pengumuman Rapat RT",
+            "rt_id": "1",
+            "deskripsi": "Rapat rutin RT akan dilaksanakan pada tanggal 20 Mei 2023 pukul 19.00 WIB di Kantor RT. Mohon kehadiran seluruh warga.",
+            "kategori": "pengumuman",
+            "lokasi": "Kantor RT",
+            "biaya": "0",
+            "dibayar": false,
+            "imageUrl": "https://example.com/image.jpg"
+        }
+    ],
+    "Vehicles": [
+        {
+            "name": "Motor Beat",
+            "nomorPolisi": "B6156EHA",
+            "user_id": 3
+        },
+        {
+            "name": "Mobil Avanza",
+            "nomorPolisi": "B2222ACD",
+            "user_id": 3
+        },
+        {
+            "name": "Motor Vario",
+            "nomorPolisi": "B8888PQR",
+            "user_id": 4
+        },
+        {
+            "name": "Mobil Ertiga",
+            "nomorPolisi": "B5555XYZ",
+            "user_id": 4
+        },
+        {
+            "name": "Motor NMax",
+            "nomorPolisi": "B1111LMN",
+            "user_id": 5
+        },
+        {
+            "name": "Motor Mio",
+            "nomorPolisi": "B4444JKL",
+            "user_id": 5
+        },
+        {
+            "name": "Mobil Xenia",
+            "nomorPolisi": "B7777GHI",
+            "user_id": 3
+        }
+    ],
+    "Guests": [
+        {
+            "name": "Budi",
+            "nomorKtp": "102913932",
+            "user_id": 3
+        },
+        {
+            "name": "Andi",
+            "nomorKtp": "102913933",
+            "user_id": 4
+        },
+        {
+            "name": "Siti",
+            "nomorKtp": "102913934",
+            "user_id": 4
+        },
+        {
+            "name": "Rina",
+            "nomorKtp": "102913935",
+            "user_id": 5
+        },
+        {
+            "name": "Hendra",
+            "nomorKtp": "102913936",
+            "user_id": 5
+        },
+        {
+            "name": "Wati",
+            "nomorKtp": "102913937",
+            "user_id": 6
+        },
+        {
+            "name": "Joko",
+            "nomorKtp": "102913938",
+            "user_id": 3
+        }
+    ],
+    "Services": [
+        {
+            "name": "Layanan Surat Pengantar",
+            "deskripsi": "Layanan untuk membuat surat pengantar ke instansi tertentu",
+            "user_id": 2,
+            "rt_id": 1
+        },
+        {
+            "name": "Layanan Surat Domisili",
+            "deskripsi": "Layanan untuk membuat surat domisili",
+            "user_id": 2,
+            "rt_id": 1
+        },
+        {
+            "name": "Layanan Pengurusan Nikah",
+            "deskripsi": "Layanan untuk mengurus persyaratan nikah",
+            "user_id": 2,
+            "rt_id": 1
+        }
+    ],
+    "Comments": [
+        {
+            "comment": "Semoga kegiatan ini bisa berjalan dengan lancar.",
+            "user_id": 3,
+            "post_id": 1
+        },
+        {
+            "comment": "Terima kasih atas informasinya.",
+            "user_id": 4,
+            "post_id": 1
+        },
+        {
+            "comment": "Siap, saya akan hadir.",
+            "user_id": 5,
+            "post_id": 1
+        },
+        {
+            "comment": "Sudah tidak sabar menunggu acaranya!",
+            "user_id": 6,
+            "post_id": 1
+        },
+        {
+            "comment": "Apa saja persyaratan yang dibutuhkan?",
+            "user_id": 3,
+            "post_id": 2
+        },
+        {
+            "comment": "Mohon informasinya, apakah ada persyaratan khusus untuk mengikuti kegiatan ini?",
+            "user_id": 3,
+            "post_id": 2
+        },
+        {
+            "comment": "Saya siap membantu dalam kegiatan ini.",
+            "user_id": 4,
+            "post_id": 2
+        },
+        {
+            "comment": "Apa saja yang perlu disiapkan?",
+            "user_id": 4,
+            "post_id": 2
+        },
+        {
+            "comment": "Apakah kegiatan ini terbuka untuk umum?",
+            "user_id": 5,
+            "post_id": 2
+        },
+        {
+            "comment": "Mohon dibuatkan pengumuman lebih lanjut tentang kegiatan ini.",
+            "user_id": 3,
+            "post_id": 3
+        }
+    ],
+    "Submissions": [
+        {
+            "user_id": 3,
+            "rt_id": 1,
+            "service_id": 1,
+            "status": "pending"
+        },
+        {
+            "user_id": 4,
+            "rt_id": 1,
+            "service_id": 1,
+            "status": "pending"
+        },
+        {
+            "user_id": 3,
+            "rt_id": 1,
+            "service_id": 2,
+            "status": "pending"
         }
     ]
 }

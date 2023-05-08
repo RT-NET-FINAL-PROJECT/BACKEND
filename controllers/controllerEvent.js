@@ -4,12 +4,12 @@ class ControllerEvent {
         try {
             let options = {
                 where: {
-                    kategory: "event",
+                    kategori: "event",
                     rt_id: req.user.rt_id,
                 },
             };
 
-            const events = await Post.findall(options);
+            const events = await Post.findAll(options);
 
             res.status(200).json(events);
         } catch (error) {
@@ -19,9 +19,10 @@ class ControllerEvent {
 
     static async findAllAnnouncements(req, res, next) {
         try {
-            const announcements = await Post.findall({
+            const announcements = await Post.findAll({
                 where: {
-                    category: "pengumuman",
+                    kategori: "pengumuman",
+                    rt_id: req.user.rt_id
                 },
             });
 
@@ -44,10 +45,12 @@ class ControllerEvent {
         }
     }
 
-    static async createEvent(req, res, next) { //aman
+    static async createEvent(req, res, next) {
+        //aman
         try {
             const { name, deskripsi, kategori, lokasi, biaya } = req.body;
-            if (!name || !deskripsi || !kategori || !lokasi || !biaya) throw { name: "NO_INPUT" }
+            if (!name || !deskripsi || !kategori || !lokasi || !biaya)
+                throw { name: "NO_INPUT" };
 
             const newEvent = await Post.create({
                 name,
@@ -66,7 +69,8 @@ class ControllerEvent {
         }
     }
 
-    static async updateEvent(req, res, next) { //aman
+    static async updateEvent(req, res, next) {
+        //aman
         try {
             const { postId } = req.params;
             const { name, deskripsi, kategori, lokasi, biaya } = req.body;

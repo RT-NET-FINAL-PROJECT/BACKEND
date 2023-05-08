@@ -10,6 +10,9 @@ module.exports = (sequelize, DataTypes) => {
       Service.belongsTo(models.Rt, {
         foreignKey: "rt_id",
       });
+      Service.hasMany(models.Submission, {
+        foreignKey: "service_id",
+      })
     }
   }
   Service.init(
@@ -39,10 +42,6 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       deskripsi: DataTypes.TEXT,
-      status: {
-        type: DataTypes.ENUM,
-        values: ["pending", "in progress", "approved", "done"],
-      },
     },
     {
       sequelize,
