@@ -50,6 +50,8 @@ class controllerService {
       const service = await Service.findByPk(serviceId);
       if (!service) throw { name: "SERVICE_NOT_FOUND" };
 
+      if (service.rt_id !== req.user.rt_id) throw { name: "Unauthorized" };
+
       res.status(200).json(service);
     } catch (error) {
       next(error);
@@ -98,6 +100,27 @@ class controllerService {
       } else if (inputStatus === "done") {
         message += "berhasil diproses dan sudah diambil di rumah pak rt";
       }
+
+      res.status(200).json({ message });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async deleteService(req, res, next) {
+    try {
+      const { serviceId } = req.params;
+
+      const service = await Service.findByPk(serviceId);
+      if (!service) throw { name: "SERVICE_NOT_FOUND" };
+
+      if (service.rt_id !== req.user.rt_id) throw { name: "Unauthorized" };
+
+      await Service.destroy({
+        where: { id: service.id },
+      });
+
+      const message = `Layanan ${service.name} berhasil dihapus`;
 
       res.status(200).json({ message });
     } catch (error) {

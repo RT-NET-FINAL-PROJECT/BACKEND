@@ -5,7 +5,7 @@ class ControllerEvent {
       let options = {
         where: {
           category: "event",
-          rt_id: req.user.rt_id
+          rt_id: req.user.rt_id,
         },
       };
 
@@ -38,6 +38,8 @@ class ControllerEvent {
       const event = await Post.findByPk(postId);
       if (!event) throw { name: "POST_NOT_FOUND" };
 
+      if (event.rt_id !== req.user.rt_id) throw { name: "Unauthorized" };
+
       res.status(200).json(event);
     } catch (error) {
       next(error);
@@ -47,8 +49,9 @@ class ControllerEvent {
   static async createEvent(req, res, next) {
     try {
       const { name, deskripsi, kategori, lokasi, biaya } = req.body;
-      if (!name || !deskripsi || !kategori || !lokasi || !biaya) throw {name: "NO_INPUT"}
-      
+      if (!name || !deskripsi || !kategori || !lokasi || !biaya)
+        throw { name: "NO_INPUT" };
+
       const newEvent = await Post.create({
         name,
         rt_id: req.user.rt_id,
@@ -70,7 +73,8 @@ class ControllerEvent {
       const { postId } = req.params;
       const { name, deskripsi, kategori, lokasi, biaya } = req.body;
 
-      if (!name || !deskripsi || !kategori || !lokasi || !biaya) throw {name: "NO_INPUT"}
+      if (!name || !deskripsi || !kategori || !lokasi || !biaya)
+        throw { name: "NO_INPUT" };
 
       const event = await Post.findByPk(postId);
       if (!event) throw { name: "POST_NOT_FOUND" };
@@ -94,6 +98,8 @@ class ControllerEvent {
 
       const deletedEvent = await Post.findByPk(postId);
       if (!deletedEvent) throw { name: "POST_NOT_FOUND" };
+
+      if (deletedEvent.rt_id !== req.user.rt_id) throw { name: "Unauthorized" };
 
       await Post.destroy({
         where: { id: postId },
