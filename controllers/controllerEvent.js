@@ -1,15 +1,15 @@
-const { Post } = require("../models");
+const { Post, Comment } = require("../models");
 class ControllerEvent {
-    static async findAllEvent(req, res, next) {
-        try {
-            let options = {
-                where: {
-                    kategori: "event",
-                    rt_id: req.user.rt_id,
-                },
-            };
+  static async findAllEvent(req, res, next) {
+    try {
+      let options = {
+        where: {
+          kategori: "event",
+          rt_id: req.user.rt_id,
+        },
+      };
 
-            const events = await Post.findAll(options);
+      const events = await Post.findAll(options);
 
       res.status(200).json(events);
     } catch (error) {
@@ -17,14 +17,14 @@ class ControllerEvent {
     }
   }
 
-    static async findAllAnnouncements(req, res, next) {
-        try {
-            const announcements = await Post.findAll({
-                where: {
-                    kategori: "pengumuman",
-                    rt_id: req.user.rt_id
-                },
-            });
+  static async findAllAnnouncements(req, res, next) {
+    try {
+      const announcements = await Post.findAll({
+        where: {
+          kategori: "pengumuman",
+          rt_id: req.user.rt_id,
+        },
+      });
 
       res.status(200).json(announcements);
     } catch (error) {
@@ -36,7 +36,7 @@ class ControllerEvent {
     try {
       const { id } = req.params;
 
-      const event = await Post.findByPk(id);
+      const event = await Post.findByPk(id, { include: [{ model: Comment }] });
       if (!event) throw { name: "POST_NOT_FOUND" };
 
       res.status(200).json(event);
@@ -45,12 +45,12 @@ class ControllerEvent {
     }
   }
 
-    static async createEvent(req, res, next) {
-        //aman
-        try {
-            const { name, deskripsi, kategori, lokasi, biaya } = req.body;
-            if (!name || !deskripsi || !kategori || !lokasi || !biaya)
-                throw { name: "NO_INPUT" };
+  static async createEvent(req, res, next) {
+    //aman
+    try {
+      const { name, deskripsi, kategori, lokasi, biaya } = req.body;
+      if (!name || !deskripsi || !kategori || !lokasi || !biaya)
+        throw { name: "NO_INPUT" };
 
       const newEvent = await Post.create({
         name,
@@ -69,11 +69,11 @@ class ControllerEvent {
     }
   }
 
-    static async updateEvent(req, res, next) {
-        //aman
-        try {
-            const { postId } = req.params;
-            const { name, deskripsi, kategori, lokasi, biaya } = req.body;
+  static async updateEvent(req, res, next) {
+    //aman
+    try {
+      const { postId } = req.params;
+      const { name, deskripsi, kategori, lokasi, biaya } = req.body;
 
       if (!name || !deskripsi || !kategori || !lokasi || !biaya)
         throw { name: "NO_INPUT" };
