@@ -4,7 +4,7 @@ class ControllerEvent {
         try {
             let options = {
                 where: {
-                    category: "event",
+                    kategory: "event",
                     rt_id: req.user.rt_id,
                 },
             };

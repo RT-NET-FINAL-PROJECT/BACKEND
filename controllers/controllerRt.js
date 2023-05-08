@@ -3,6 +3,16 @@ const { Op } = require('sequelize');
 
 class ControllerRt {
 
+    static async getAllRt(req, res, next) {
+        try {
+            const rts = await Rt.findAll();
+            res.status(200).json(rts);
+        } catch (error) {
+            console.log(error);
+            next(error);
+        }
+    }
+
     static async registerRt(req, res, next) { // ini pak rt register mandiri sebelum login
         try {
             console.log(req.body);
@@ -109,7 +119,7 @@ class ControllerRt {
             next(error);
         }
     }
-    
+
 
     static async findAllWarga(req, res, next) {
         try {

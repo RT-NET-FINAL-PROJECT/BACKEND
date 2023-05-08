@@ -32,6 +32,10 @@ module.exports = async (error, req, res, next) => {
       message = "Post not found";
       status = 404;
       break;
+      case "account_pending":
+        message = "Akun Sedang Menunggu Persetujuan RT";
+        status = 404;
+        break;
 
     default:
       message = "Internal Server Error";
