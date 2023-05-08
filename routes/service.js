@@ -1,10 +1,17 @@
-const { getAllServices, createService, getServiceDetail, editService, updateService } = require('../controllers/controllerService');
-const service = require('express').Router();
+const {
+  getAllServices,
+  createService,
+  getServiceDetail,
+  editService,
+  updateService,
+} = require("../controllers/controllerService");
+const { authentication } = require("../middlewares/authentication");
+const service = require("express").Router();
 
-service.get('/services', getAllServices);
-service.post('/services', createService);
-service.get('/services/:serviceId', getServiceDetail);
-service.put('/services/:serviceId', editService);
-service.patch('/services/:serviceId', updateService);
+service.get("/services", authentication, getAllServices);
+service.post("/services", authentication, createService);
+service.get("/services/:serviceId", authentication, getServiceDetail);
+service.put("/services/:serviceId", authentication, editService);
+service.patch("/services/:serviceId", authentication, updateService);
 
 module.exports = service;
