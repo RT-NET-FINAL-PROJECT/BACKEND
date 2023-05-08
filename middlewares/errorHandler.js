@@ -32,6 +32,11 @@ module.exports = async (error, req, res, next) => {
       message = "Post not found";
       status = 404;
       break;
+
+    case "SUBMISSION_NOT_FOUND":
+      message = "Permintaan layanan tidak ditemukan";
+      status = 404;
+      break;
       
     case "SERVICE_NOT_FOUND":
       message = "Layanan tidak ditemukan";

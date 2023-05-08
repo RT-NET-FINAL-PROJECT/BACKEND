@@ -1,14 +1,40 @@
-const { Service } = require("../models");
+const { Service, Submission } = require("../models");
 
 class controllerService {
-  static async requestService(req, res, next) { //untuk user
+  static async createService(req, res, next) {
     try {
       const { name, deskripsi } = req.body;
 
-      const newService = await Submission.create({
+      const newService = await Service.create({
         name,
+        deskripsi,
         user_id: req.user.id,
         rt_id: req.user.rt_id,
+      });
+
+      let message = `Layanan baru ${newService.name} berhasil dibuat.`;
+
+      req.status(201).json({ message });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async requestService(req, res, next) {
+    //untuk user
+    try {
+      const { serviceId } = req.params;
+      const { deskripsi } = req.body;
+
+      const service = await Service.findByPk(serviceId);
+      if (!service) throw { name: "SERVICE_NOT_FOUND" };
+
+      if (service.rt_id !== req.user.rt_id) throw { name: "Unauthorized" };
+
+      const newService = await Submission.create({
+        user_id: req.user.id,
+        rt_id: req.user.rt_id,
+        servide_id: service.id,
         deskripsi,
         status: "pending",
       });
@@ -76,19 +102,22 @@ class controllerService {
     }
   }
 
-  static async updateService(req, res, next) {
+  static async updateRequestService(req, res, next) {
     try {
-      const { serviceId } = req.params;
+      const { serviceId, submissionId } = req.params;
       const { inputStatus } = req.query;
 
       const service = await Service.findByPk(serviceId);
       if (!service) throw { name: "SERVICE_NOT_FOUND" };
 
-      await Service.update(
+      const request = await Submission.findByPk(submissionId);
+      if (!request) throw { name: "SUBMISSION_NOT_FOUND" };
+
+      await Submission.update(
         {
           status: inputStatus,
         },
-        { where: { id: service.id } }
+        { where: { id: request.id } }
       );
 
       let message = `Layanan ${service.name} `;
