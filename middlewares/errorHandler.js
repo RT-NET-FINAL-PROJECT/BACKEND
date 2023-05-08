@@ -6,6 +6,11 @@ module.exports = async (error, req, res, next) => {
       message = "Fields required";
       status = 400;
       break;
+      
+    case "account_pending":
+      message = "Akun Sedang Menunggu Persetujuan RT";
+      status = 404;
+      break;
 
     case "SequelizeValidationError":
       message = error.errors.map((el) => {
