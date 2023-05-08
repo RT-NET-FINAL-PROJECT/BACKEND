@@ -5,7 +5,7 @@ class ControllerRt {
 
     static async getAllRt(req, res, next) {
         try {
-            const rts = await Rt.findAll();
+            const rts = await Rt.findAll({include: {model:User}});
             res.status(200).json(rts);
         } catch (error) {
             console.log(error);
@@ -247,11 +247,6 @@ class ControllerRt {
             next(error);
         }
     }
-
-
-
-
-
 
 }
 

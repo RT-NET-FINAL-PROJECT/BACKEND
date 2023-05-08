@@ -1,4 +1,4 @@
-const { Post, Comment } = require("../models");
+const { Post, Comment, User } = require("../models");
 class ControllerEvent {
   static async findAllEvent(req, res, next) {
     try {
@@ -36,7 +36,14 @@ class ControllerEvent {
     try {
       const { id } = req.params;
 
-      const event = await Post.findByPk(id, { include: [{ model: Comment }] });
+      const event = await Post.findByPk(id, {
+        include: [
+          {
+            model: Comment,
+            include: [{ model: User, attributes: ["namaLengkap"] }],
+          },
+        ],
+      });
       if (!event) throw { name: "POST_NOT_FOUND" };
 
       res.status(200).json(event);
