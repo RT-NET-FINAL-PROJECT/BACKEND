@@ -34,7 +34,8 @@ module.exports = {
         type: Sequelize.TEXT
       },
       status: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.ENUM,
+        values: ["pending", "in progress", "approved", "done"]
       },
       createdAt: {
         allowNull: false,
