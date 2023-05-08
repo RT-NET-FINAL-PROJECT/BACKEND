@@ -7,13 +7,3 @@ const { authorizationAdmin } = require('../middlewares/authorization')
 router.post('/admin/register', authentication, authorizationAdmin, ControllerAdmin.createDataRt)
 
 module.exports = router
-
-
-
-
-
-
-
-
-
-

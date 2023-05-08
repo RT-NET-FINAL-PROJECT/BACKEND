@@ -1,6 +1,7 @@
 module.exports = async (error, req, res, next) => {
   let message, status;
 
+  console.log(error);
   switch (error.name) {
     case "NO_INPUT":
       message = "Fields required";
@@ -42,7 +43,7 @@ module.exports = async (error, req, res, next) => {
       message = "Permintaan layanan tidak ditemukan";
       status = 404;
       break;
-
+      
     case "SERVICE_NOT_FOUND":
       message = "Layanan tidak ditemukan";
       status = 404;
