@@ -1,10 +1,4 @@
-const {
-  getAllServices,
-  createService,
-  getServiceDetail,
-  editService,
-  updateService,
-} = require("../controllers/controllerService");
+const { getAllServices, createService, getServiceDetail, editService, updateService } = require("../controllers/controllerService");
 const { authentication } = require("../middlewares/authentication");
 const service = require("express").Router();
 

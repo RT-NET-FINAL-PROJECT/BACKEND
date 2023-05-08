@@ -22,6 +22,7 @@ class ControllerEvent {
       const announcements = await Post.findAll({
         where: {
           kategori: "pengumuman",
+          rt_id: req.user.rt_id
         },
       });
 

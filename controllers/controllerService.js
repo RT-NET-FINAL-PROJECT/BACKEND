@@ -1,11 +1,11 @@
 const { Service } = require("../models");
 
 class controllerService {
-  static async createService(req, res, next) {
+  static async requestService(req, res, next) { //untuk user
     try {
       const { name, deskripsi } = req.body;
 
-      const newService = await Service.create({
+      const newService = await Submission.create({
         name,
         user_id: req.user.id,
         rt_id: req.user.rt_id,

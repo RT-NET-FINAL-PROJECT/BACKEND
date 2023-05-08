@@ -1,57 +1,57 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Posts', {
+    await queryInterface.createTable("Posts", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       rt_id: {
         type: Sequelize.INTEGER,
         references: {
           model: "Rts",
-          key: "id"
+          key: "id",
         },
         onUpdate: "CASCADE",
-        onDelete: "CASCADE"
+        onDelete: "CASCADE",
       },
       deskripsi: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       kategori: {
         type: Sequelize.ENUM,
-        values: [
-          "pengumuman",
-          "event"
-        ],
-        defaultValue: "pengumuman"
+        values: ["pengumuman", "event"],
+        defaultValue: "pengumuman",
       },
       lokasi: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       biaya: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       dibayar: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+      },
+      imageUrl: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Posts');
-  }
+    await queryInterface.dropTable("Posts");
+  },
 };

@@ -278,12 +278,6 @@ class ControllerUser {
             next(error);
         }
     }
-
-
-
-
-
-
 }
 
 

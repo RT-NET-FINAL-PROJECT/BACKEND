@@ -15,4 +15,5 @@ router.get('/rt/users', authentication, authorizationRt, ControllerRt.findAllWar
 router.post('/rt/users', authentication, authorizationRt, ControllerRt.createWarga) //add warga sebatas main entity aja
 router.put('/rt/users/:id', authentication, authorizationRt, ControllerRt.updateWarga) //add warga sebatas main entity aja
 router.delete('/rt/users/:id', authentication, authorizationRt, ControllerRt.deleteWarga) //delete data warga by id
-module.exports = router
+
+module.exports = router;
