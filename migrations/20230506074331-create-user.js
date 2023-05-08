@@ -33,7 +33,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       status: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.ENUM,
+        values: ["pending", "in progress", "approved", "done"],
+        defaultValue: "pending"
       },
       rt_id: {
         type: Sequelize.INTEGER,

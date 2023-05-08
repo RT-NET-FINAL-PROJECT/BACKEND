@@ -77,7 +77,7 @@ class ControllerRt {
                 throw { name: "UserNotFound" };
             }
 
-            user.status = true; // ubah status user menjadi "Aktif"
+            user.status = "approved"; // ubah status user menjadi "Aktif"
             await user.save();
 
             const pengajuan = await Submission.findOne({
@@ -89,7 +89,7 @@ class ControllerRt {
                 throw { name: "PengajuanNotFound" };
             }
 
-            pengajuan.status = true; // ubah status pengajuan menjadi "Disetujui"
+            pengajuan.status = "approved"; // ubah status pengajuan menjadi "Disetujui"
             await pengajuan.save();
 
             res.status(200).json(user);

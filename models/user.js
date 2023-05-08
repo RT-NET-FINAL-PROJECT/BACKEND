@@ -82,7 +82,10 @@ module.exports = (sequelize, DataTypes) => {
           notNull: "NIK dibutuhkan",
         },
       },
-      status: DataTypes.BOOLEAN,
+      status: {
+        type: DataTypes.ENUM,
+        values: ["pending", "in progress", "approved", "done"],
+      },
       rt_id: {
         type: DataTypes.INTEGER,
         allowNull: false,

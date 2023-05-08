@@ -1,4 +1,5 @@
 const { Post, Comment, User } = require("../models");
+const { sendEmailToResidents } = require("../helpers/smtp")
 class ControllerEvent {
   static async findAllEvent(req, res, next) {
     try {
@@ -52,12 +53,16 @@ class ControllerEvent {
     }
   }
 
+
+
+
+
   static async createEvent(req, res, next) {
-    //aman
     try {
       const { name, deskripsi, kategori, lokasi, biaya } = req.body;
-      if (!name || !deskripsi || !kategori || !lokasi || !biaya)
+      if (!name || !deskripsi || !kategori || !lokasi || !biaya) {
         throw { name: "NO_INPUT" };
+      }
 
       const newEvent = await Post.create({
         name,
@@ -69,12 +74,18 @@ class ControllerEvent {
         isPaid: false,
       });
 
+      // Kirim email pemberitahuan
+      // await sendEmailToResidents(newEvent);
+
       res.status(201).json(newEvent);
     } catch (error) {
       console.log(error);
       next(error);
     }
   }
+
+
+
 
   static async updateEvent(req, res, next) {
     //aman

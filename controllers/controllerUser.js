@@ -28,15 +28,15 @@ class ControllerUser {
                 role: "Warga",
                 status_keluarga,
                 nomorTelp,
-                status: false // set status pengajuan ke "Pending"
+                status: "pending" // set status pengajuan ke "Pending"
             });
 
             // tambahkan data pengajuan
             await Submission.create({
                 user_id: newUser.id,
                 rt_id: newUser.rt_id,
-                jenisPengajuan: "Register Warga",
-                status: false
+                keterangan: "Register Warga",
+                status: "pending"
             });
 
             const { password: _, ...userWithoutPassword } = newUser.dataValues;
@@ -62,7 +62,7 @@ class ControllerUser {
 
 
             if (!findUser) throw { name: "invalid_email/password" }
-            if (findUser.status === false) throw { name: "account_pending" }
+            if (findUser.status === "pending") throw { name: "account_pending" }
             const passwordValidated = comparePassword(password, findUser.password)
 
             if (!passwordValidated) throw { name: "invalid_email/password" }
