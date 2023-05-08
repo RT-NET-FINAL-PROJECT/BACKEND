@@ -2,6 +2,7 @@
     "Rts": [
         {
             "kepala_rt": "Bondan",
+            "nik_rt": "120298",
             "rt": "04",
             "rw": "012",
             "kelurahan": "Bojong Pondok Terong",
@@ -11,12 +12,24 @@
         },
         {
             "kepala_rt": "Heru",
+            "nik_rt": "1202988",
             "rt": "05",
             "rw": "012",
             "kelurahan": "Bojong Pondok Terong",
             "kecamatan": "Cipayung",
             "kotaKabupaten": "Depok",
             "provinsi": "Jawa barat"
+        }
+    ],
+    "Users": [
+        {
+            "namaLengkap": "admin",
+            "nomorTelp": "08123456789",
+            "role": "Admin",
+            "rt_id" : 1,
+            "email": "admin@admin.com",
+            "password": "admin123",
+            "status_keluarga": "Kepala Keluarga"
         }
     ]
 }

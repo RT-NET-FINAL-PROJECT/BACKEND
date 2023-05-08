@@ -74,7 +74,14 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       nomorKk: DataTypes.STRING,
-      nomorKtp: DataTypes.STRING,
+      nomorKtp:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: "NIK dibutuhkan",
+          notNull: "NIK dibutuhkan",
+        },
+      },
       status: DataTypes.BOOLEAN,
       rt_id: {
         type: DataTypes.INTEGER,

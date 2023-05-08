@@ -12,6 +12,9 @@ module.exports = {
       kepala_rt: {
         type: Sequelize.STRING
       },
+      nik_rt:{
+        type: Sequelize.STRING
+      },
       rt: {
         type: Sequelize.STRING
       },

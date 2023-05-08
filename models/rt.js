@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
   Rt.init(
     {
       kepala_rt: DataTypes.STRING,
+      nik_rt:DataTypes.STRING,
       rt: DataTypes.STRING,
       rw: DataTypes.STRING,
       kelurahan: DataTypes.STRING,

@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const ControllerUser = require('../controllers/controllerUser')
 const { authentication } = require('../middlewares/authentication')
-const { authorizationRt } = require('../middlewares/authorization')
+const { authorizationRt, authorizationKendaraan, authorizationTamu, authorizationComment } = require('../middlewares/authorization')
 
 
 
@@ -18,11 +18,24 @@ router.get('/', (req, res) => {
 //USER WARGA
 router.post('/login', ControllerUser.login)
 router.post('/users/register', ControllerUser.register) // setelah register akun sudah tercreate cuman status masih pending
-router.patch('/users/:id',authentication,authorizationRt, ControllerUser.approveUser) //persetujuan rt agar bisa login
+
+
+//KENDARAAN
+router.post('/users/vehicle',authentication, ControllerUser.addKendaraan)
+router.put('/users/vehicle/:id',authentication,authorizationKendaraan, ControllerUser.updateKendaraan)
+router.delete('/users/vehicle/:id',authentication,authorizationKendaraan, ControllerUser.deleteKendaraan)
+
+//TAMU
+router.post('/users/guest',authentication, ControllerUser.addTamu)
+router.delete('/users/guest/:id',authentication,authorizationTamu, ControllerUser.deleteTamu)
+
+//USER COMMENT
+router.post('/users/comment',authentication, ControllerUser.addComment)
+router.delete('/users/comment/:id',authentication,authorizationTamu,authorizationComment, ControllerUser.deleteComment)
 
 
 
-router.put('/users',authentication, ControllerUser.updateUser)//warga cuman bisa update data dia sendiri
+router.put('/users/:id',authentication, ControllerUser.updateUser)//warga cuman bisa update data dia sendiri
 router.get('/users/:id',authentication, ControllerUser.detailUser)//buat profile
 
 
