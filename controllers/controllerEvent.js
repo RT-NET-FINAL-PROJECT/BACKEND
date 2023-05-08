@@ -75,7 +75,7 @@ class ControllerEvent {
       });
 
       // Kirim email pemberitahuan
-      // await sendEmailToResidents(newEvent);
+      await sendEmailToResidents(newEvent);
 
       res.status(201).json(newEvent);
     } catch (error) {
