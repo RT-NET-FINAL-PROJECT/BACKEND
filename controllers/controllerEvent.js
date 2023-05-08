@@ -5,6 +5,7 @@ class ControllerEvent {
       let options = {
         where: {
           category: "event",
+          rt_id: req.user.rt_id
         },
       };
 

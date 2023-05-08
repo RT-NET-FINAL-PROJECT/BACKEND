@@ -14,7 +14,7 @@ echo "💲Generating tables .... 📦"
 
 # sequelize model:generate --name Guest --attributes name:string,user_id:integer,nomorKtp:string
 
-# sequelize model:generate --name Service --attributes name:string,rt_id:integer,user_id:integer,deskripsi:text,status:boolean
+# sequelize model:generate --name Service --attributes name:string,rt_id:integer,user_id:integer,deskripsi:text,status:enum
 
 # sequelize model:generate --name Comment --attributes comment:text,user_id:integer,post_id:integer
 

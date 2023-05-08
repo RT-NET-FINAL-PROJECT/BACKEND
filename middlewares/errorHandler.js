@@ -15,7 +15,7 @@ module.exports = async (error, req, res, next) => {
       break;
 
     case "SequelizeUniqueConstraintError":
-      message = error.errors[0].message;
+      message = "Email sudah terdaftar";
       status = 400;
 
     case "InvalidToken":
@@ -30,6 +30,11 @@ module.exports = async (error, req, res, next) => {
 
     case "POST_NOT_FOUND":
       message = "Post not found";
+      status = 404;
+      break;
+      
+    case "SERVICE_NOT_FOUND":
+      message = "Layanan tidak ditemukan";
       status = 404;
       break;
 

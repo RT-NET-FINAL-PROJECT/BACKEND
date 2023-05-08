@@ -39,7 +39,10 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       deskripsi: DataTypes.TEXT,
-      status: DataTypes.BOOLEAN,
+      status: {
+        type: DataTypes.ENUM,
+        values: ["pending", "in progress", "approved", "done"],
+      },
     },
     {
       sequelize,
