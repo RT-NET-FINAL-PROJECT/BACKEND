@@ -30,7 +30,7 @@
             "email": "admin@admin.com",
             "password": "admin123",
             "status_keluarga": "Kepala Keluarga",
-            "status": true
+            "status": "approved"
         },
         {
             "namaLengkap": "Bondan Herutomo",
@@ -42,7 +42,7 @@
             "status_keluarga": "Kepala Keluarga",
             "nomorKtp": "120298",
             "nomorKk": "120192393",
-            "status": true
+            "status": "approved"
         },
         {
             "namaLengkap": "Budi",
@@ -54,7 +54,7 @@
             "status_keluarga": "Anggota Keluarga",
             "nomorKtp": "102913932",
             "nomorKk": "120192393",
-            "status": true
+            "status": "approved"
         },
         {
             "namaLengkap": "Citra",
@@ -66,7 +66,7 @@
             "status_keluarga": "Anggota Keluarga",
             "nomorKtp": "102913933",
             "nomorKk": "120192393",
-            "status": true
+            "status": "approved"
         },
         {
             "namaLengkap": "Dina",
@@ -78,7 +78,7 @@
             "status_keluarga": "Anggota Keluarga",
             "nomorKtp": "102913934",
             "nomorKk": "120192393",
-            "status": true
+            "status": "approved"
         },
         {
             "namaLengkap": "Eka",
@@ -90,7 +90,7 @@
             "status_keluarga": "Anggota Keluarga",
             "nomorKtp": "102913935",
             "nomorKk": "120192393",
-            "status": true
+            "status": "approved"
         },
         {
             "namaLengkap": "Fajar",
@@ -102,7 +102,7 @@
             "status_keluarga": "Anggota Keluarga",
             "nomorKtp": "102913936",
             "nomorKk": "120192393",
-            "status": true
+            "status": "approved"
         },
         {
             "namaLengkap": "Gina",
@@ -114,7 +114,7 @@
             "status_keluarga": "Anggota Keluarga",
             "nomorKtp": "102913937",
             "nomorKk": "120192393",
-            "status": true
+            "status": "approved"
         },
         {
             "namaLengkap": "Umay",
@@ -126,7 +126,7 @@
             "status_keluarga": "Anggota Keluarga",
             "nomorKtp": "1029139371",
             "nomorKk": "1201923933",
-            "status": true
+            "status": "approved"
         }
     ],
     "Posts": [

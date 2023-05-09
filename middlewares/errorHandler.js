@@ -7,7 +7,7 @@ module.exports = async (error, req, res, next) => {
       message = "Fields required";
       status = 400;
       break;
-      
+
     case "account_pending":
       message = "Akun Sedang Menunggu Persetujuan RT";
       status = 404;
@@ -23,6 +23,12 @@ module.exports = async (error, req, res, next) => {
     case "SequelizeUniqueConstraintError":
       message = "Email sudah terdaftar";
       status = 400;
+      break;
+
+    case "invalid_email/password":
+      message = "Email / passwor salah";
+      status = 401;
+      break;
 
     case "InvalidToken":
       message = "Invalid Token";
@@ -43,7 +49,7 @@ module.exports = async (error, req, res, next) => {
       message = "Permintaan layanan tidak ditemukan";
       status = 404;
       break;
-      
+
     case "SERVICE_NOT_FOUND":
       message = "Layanan tidak ditemukan";
       status = 404;

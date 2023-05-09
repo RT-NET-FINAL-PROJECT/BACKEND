@@ -3,13 +3,12 @@ const ControllerRt = require('../controllers/controllerRt')
 const { authentication } = require('../middlewares/authentication')
 const { authorizationRt} = require('../middlewares/authorization')
 
-
+router.post('/rt/login',)
 router.post('/rt/register', ControllerRt.registerRt) 
-router.post('/sekertariat/register', authentication, authorizationRt, ControllerRt.registerSekertariat)
+router.post('/sekretariat/register', authentication, authorizationRt, ControllerRt.registerSekretariat)
 
 router.get('/rt/users/submissions',authentication,authorizationRt, ControllerRt.findAllSubmissions) // find all semua persetujuan RT
 router.patch('/rt/users/:id',authentication,authorizationRt, ControllerRt.approveUser) //persetujuan rt agar bisa login
-
 
 router.get('/rt/users', authentication, authorizationRt, ControllerRt.findAllWarga) //yang bisa get all data warga hanya RT dan Sekertariat
 router.post('/rt/users', authentication, authorizationRt, ControllerRt.createWarga) //add warga sebatas main entity aja

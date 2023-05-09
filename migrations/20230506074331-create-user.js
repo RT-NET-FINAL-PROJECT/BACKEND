@@ -1,98 +1,96 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable("Users", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       namaLengkap: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       nomorTelp: {
         type: Sequelize.STRING,
-        unique: true
+        unique: true,
       },
       email: {
         type: Sequelize.STRING,
-        unique: true
+        unique: true,
       },
       password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       role: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       nomorKk: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       nomorKtp: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       status: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.ENUM,
+        values: ["pending", "in progress", "approved", "done"],
       },
       rt_id: {
         type: Sequelize.INTEGER,
         references: {
           model: "Rts",
-          key: "id"
+          key: "id",
         },
         onUpdate: "CASCADE",
-        onDelete: "CASCADE"
+        onDelete: "CASCADE",
       },
       status_keluarga: {
         type: Sequelize.ENUM,
-        values: [
-          "Kepala Keluarga",
-          "Anggota Keluarga"
-        ],
-        defaultValue: "Kepala Keluarga"
+        values: ["Kepala Keluarga", "Anggota Keluarga"],
+        defaultValue: "Kepala Keluarga",
       },
       kkImg: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       ktpImg: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       photoUrl: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       aktaImg: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       agama: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       jenis_kelamin: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       status_perkawinan: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       pekerjaan: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       tempat_lahir: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       tanggal_lahir: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Users');
-  }
+    await queryInterface.dropTable("Users");
+  },
 };
