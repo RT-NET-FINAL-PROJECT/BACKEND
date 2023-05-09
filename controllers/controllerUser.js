@@ -130,6 +130,30 @@ class ControllerUser {
         }
     }
 
+    static async findAllKeluargaById(req, res, next) {
+        try {
+            // Find the user by id
+            const user = await User.findByPk(req.params.id);
+            if (!user) {
+                return res.status(404).json({ message: "User not found" });
+            }
+            // Find all users with the same nomorKk
+            const users = await User.findAll({
+                where: {
+                    nomorKk: user.nomorKk
+                },
+                attributes: {
+                    exclude: ['password']
+                }
+            });
+            res.status(200).json(users);
+        } catch (error) {
+            console.log(error);
+            next(error);
+        }
+    }
+
+
     static async updateUser(req, res, next) {
         try {
             const { id } = req.params;

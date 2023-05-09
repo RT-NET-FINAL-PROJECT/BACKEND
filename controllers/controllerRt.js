@@ -17,12 +17,12 @@ class ControllerRt {
                 }
             })
 
-
             if (!findUser) throw { name: "invalid_email/password" }
-            if (findUser.status === "pending") throw { name: "account_pending" }
             const passwordValidated = comparePassword(password, findUser.password)
 
             if (!passwordValidated) throw { name: "invalid_email/password" }
+            if (findUser.role !== "RT") throw { name: "Unauthorized" }
+
             const payload = {
                 id: findUser.id,
             }
@@ -43,11 +43,12 @@ class ControllerRt {
         }
     }
 
+
     static async getAllRt(req, res, next) {
         try {
             const rts = await Rt.findAll({
                 attributes: {
-                    exclude: ["nik_rt","link_grup_wa"]
+                    exclude: ["nik_rt", "link_grup_wa"]
                 }
             });
             res.status(200).json(rts);
@@ -91,19 +92,16 @@ class ControllerRt {
     static async registerSekretariat(req, res, next) { //ini pak rt yang mendaftarkan sekertariat setelah login
         try {
             console.log(req.body);
-            let { namaLengkap, nomorTelp, email, password, rt_id } = req.body;
-            const rt = await Rt.findByPk(rt_id);
-            if (!rt) {
-                throw { name: "RtNotFound" };
-            }
+            let { namaLengkap, nomorTelp, email, password, nomorKtp } = req.body;
             let newUser = await User.create({
                 namaLengkap,
                 email,
                 password,
-                rt_id,
+                nomorKtp,
+                rt_id: req.user.rt_id,
                 role: "Sekretariat",
                 nomorTelp,
-                status: "approved"
+                status: "done"
             })
             const { password: _, ...userWithoutPassword } = newUser.dataValues;
             res.status(201).json(userWithoutPassword)
@@ -113,37 +111,45 @@ class ControllerRt {
         }
     }
 
-    // static async approveUser(req, res, next) {
-    //     try {
-    //         const { id } = req.params;
 
-    //         const user = await User.findByPk(id);
-    //         if (!user) {
-    //             throw { name: "UserNotFound" };
-    //         }
+    static async updateRequestUser(req, res, next) {
+        try {
+            const { userId, submissionId } = req.params;
+            const { inputStatus } = req.query;
 
-    //         user.status = "approved"; // ubah status user menjadi "Aktif"
-    //         await user.save();
+            const user = await User.findByPk(userId);
+            if (!user) throw { name: "SERVICE_NOT_FOUND" };
 
-    //         const pengajuan = await Submission.findOne({
-    //             where: {
-    //                 user_id: id
-    //             }
-    //         });
-    //         if (!pengajuan) {
-    //             throw { name: "PengajuanNotFound" };
-    //         }
+            user.status = inputStatus; // ubah status user menjadi "done"
+            await user.save();
 
-    //         pengajuan.status = "approved"; // ubah status pengajuan menjadi "Disetujui"
-    //         await pengajuan.save();
+            const request = await Submission.findByPk(submissionId);
+            if (!request) throw { name: "SUBMISSION_NOT_FOUND" };
 
-    //         res.status(200).json(user);
-    //     } catch (error) {
-    //         console.log(error);
-    //         next(error);
-    //     }
-    // }
+            await Submission.update(
+                {
+                    status: inputStatus,
+                },
+                { where: { id: request.id } }
+            );
 
+            let message = `${user.namaLengkap} `;
+
+            if (inputStatus === "in progress") {
+                message += "berhasil masuk dan akan diteruskan ke pak rt";
+            } else if (inputStatus === "approved") {
+                message += "sudah disetujui pak rt dan sedang dalam proses";
+            } else if (inputStatus === "done") {
+                message += "berhasil diproses akun sudah aktif";
+            }
+
+            console.log(inputStatus);
+
+            res.status(200).json({ message });
+        } catch (error) {
+            next(error)
+        }
+    }
 
     static async findAllSubmissions(req, res, next) { // find All semua yg harus di acc rt sesuai rt_id
         try {
@@ -244,7 +250,7 @@ class ControllerRt {
                 role: "Warga",
                 nomorKk,
                 nomorKtp,
-                status: "approved",
+                status: "done",
                 rt_id: req.user.rt_id,
                 status_keluarga,
                 kkImg,

@@ -5,13 +5,18 @@ const service = require("express").Router();
 
 service.get("/services", authentication, getAllServices);
 service.get("/submissions", authentication, getAllSubmission);
+
 service.post("/submissions/:serviceId", authentication, requestService);
+
+
 service.get("/submissions/:submissionId", authentication, getSubmissionDetail);
 service.put("/submissions/:submissionId", authentication, editSubmission);
 service.delete("/submissions/:submissionId", authentication, deleteSubmission);
 service.post("/services", authentication, createService);
 service.get("/services/:serviceId", authentication, getServiceDetail);
 service.put("/services/:serviceId", authentication, editService);
+
+
 service.patch("/services/:serviceId/submissions/:submissionId", authentication, updateRequestService);
 
 module.exports = service;

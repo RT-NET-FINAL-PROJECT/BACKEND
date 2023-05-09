@@ -73,6 +73,31 @@ async function authorizationComment(req, res, next) {
         console.log(error);
         next(error)
     }
+
+
+
+
+
+    async function authorizationUser(req, res, next) {
+        try {
+            let userId = req.params.id
+            let users = await User.findByPk(userId)
+            if (!users) throw { name: "DataNotFound" }
+            if (req.user.id !== user_id) {
+                throw ({ name: "Forbidden" })
+            }
+            next()
+        } catch (error) {
+            console.log(error);
+            next(error)
+        }
+    }
+    
 }
+
+
+
+
+
 
 module.exports = { authorizationRt, authorizationAdmin, authorizationKendaraan, authorizationTamu, authorizationComment }

@@ -36,33 +36,49 @@ module.exports = (sequelize, DataTypes) => {
       namaLengkap: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          notEmpty: "Nama lengkap dibutuhkan",
-          notNull: "Nama lengkap dibutuhkan",
-        },
+          validate: {
+            notNull: {
+              msg: "Nama lengkap dibutuhkan!"
+            },
+            notEmpty: {
+              msg: "Nama lengkap dibutuhkan!"
+            },
+          },
       },
       nomorTelp: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty: "Nomor Telepon dibutuhkan",
-          notNull: "Nomor Telepon dibutuhkan",
+          notNull: {
+            msg: "Nomor Telefon dibutuhkan!"
+          },
+          notEmpty: {
+            msg: "Nomor Telefon dibutuhkan!"
+          },
         },
       },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty: "Email dibutuhkan",
-          notNull: "Email dibutuhkan",
+          notNull: {
+            msg: "Email dibutuhkan!"
+          },
+          notEmpty: {
+            msg: "Email dibutuhkan!"
+          },
         },
       },
       password: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty: "Password dibutuhkan",
-          notNull: "Password dibutuhkan",
+          notNull: {
+            msg: "Password dibutuhkan!"
+          },
+          notEmpty: {
+            msg: "Password dibutuhkan!"
+          },
         },
       },
       role: {
@@ -74,12 +90,16 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       nomorKk: DataTypes.STRING,
-      nomorKtp:{
+      nomorKtp: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty: "NIK dibutuhkan",
-          notNull: "NIK dibutuhkan",
+          notNull: {
+            msg: "NIK dibutuhkan!"
+          },
+          notEmpty: {
+            msg: "NIK dibutuhkan!"
+          },
         },
       },
       status: {

@@ -19,6 +19,8 @@ router.get('/', (req, res) => {
 router.post('/login', ControllerUser.login)
 router.post('/users/register', ControllerUser.register) // setelah register akun sudah tercreate cuman status masih pending
 
+//CARI KK YG SAMA
+router.get('/users/kk/:id',authentication, ControllerUser.findAllKeluargaById)
 
 //KENDARAAN
 router.post('/users/vehicle',authentication, ControllerUser.addKendaraan)

@@ -1,11 +1,12 @@
 const { Service, Submission, Rt, User } = require("../models");
+const { sendEmailToResidents } = require("../helpers/smtp_layanan")
 
 class ControllerSubmission {
   static async requestService(req, res, next) {
     //untuk user
     try {
       const { serviceId } = req.params;
-      const { keterangan } = req.body;
+
 
       const service = await Service.findByPk(serviceId);
       if (!service) throw { name: "SERVICE_NOT_FOUND" };
@@ -16,13 +17,12 @@ class ControllerSubmission {
         user_id: req.user.id,
         rt_id: req.user.rt_id,
         service_id: service.id,
-        keterangan,
+        keterangan: service.name,
         status: "pending",
       });
 
-      const message = `Permintaan ${service.name} berhasil dibuat.`;
 
-      res.status(201).json({ message });
+      res.status(201).json(newService);
     } catch (error) {
       next(error);
     }
@@ -122,18 +122,10 @@ class ControllerSubmission {
       const service = await Service.findByPk(serviceId);
       if (!service) throw { name: "SERVICE_NOT_FOUND" };
 
-      const warga = await User.findByPk(serviceId);
-      if (!warga) throw { name: "SERVICE_NOT_FOUND" };
-
-      warga.status = inputStatus;
-
-
       const request = await Submission.findByPk(submissionId);
       if (!request) throw { name: "SUBMISSION_NOT_FOUND" };
 
-
-
-      await Submission.update(
+     let update = await Submission.update(
         {
           status: inputStatus,
         },
@@ -151,6 +143,8 @@ class ControllerSubmission {
       }
 
       console.log(inputStatus);
+
+      await sendEmailToResidents(request);
 
       res.status(200).json({ message });
     } catch (error) {
