@@ -28,7 +28,7 @@ class ControllerRt {
             }
 
             const access_token = createToken(payload)
-            console.log(access_token);
+            // console.log(access_token);
 
             const response = {
                 access_token,
@@ -90,9 +90,10 @@ class ControllerRt {
 
     static async registerSekretariat(req, res, next) { //ini pak rt yang mendaftarkan sekertariat setelah login
         try {
-            console.log(req.body);
-            let { namaLengkap, nomorTelp, email, password, rt_id } = req.body;
-            const rt = await Rt.findByPk(rt_id);
+            // console.log(req.body);
+            let { namaLengkap, nomorTelp, email, password, nomorKtp } = req.body;
+            const rtId = req.user.rt_id
+            const rt = await Rt.findByPk(rtId);
             if (!rt) {
                 throw { name: "RtNotFound" };
             }
@@ -100,7 +101,8 @@ class ControllerRt {
                 namaLengkap,
                 email,
                 password,
-                rt_id,
+                rt_id: rtId,
+                nomorKtp,
                 role: "Sekretariat",
                 nomorTelp,
                 status: "approved"
