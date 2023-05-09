@@ -21,7 +21,7 @@ module.exports = async (error, req, res, next) => {
       break;
 
     case "SequelizeUniqueConstraintError":
-      message = "Email / nomor telefon sudah terdaftar";
+      message = "Email / nomor telephone sudah terdaftar";
       status = 400;
       break;
 

@@ -96,7 +96,7 @@ class ControllerRt {
   }
 
   static async registerSekretariat(req, res, next) {
-    //ini pak rt yang mendaftarkan sekertariat setelah login
+    //ini pak rt yang mendaftarkan Sekretariat setelah login
     try {
       console.log(req.body);
       let { namaLengkap, nomorTelp, email, password, nomorKtp } = req.body;
@@ -110,7 +110,7 @@ class ControllerRt {
         password,
         nomorKtp,
         rt_id: req.user.rt_id,
-        role: "Sekertariat",
+        role: "Sekretariat",
         nomorTelp,
         status: "approved",
       });
@@ -184,7 +184,7 @@ class ControllerRt {
       if (!user) {
         throw { name: "UserNotFound" };
       }
-      // Jika user adalah RT/Sekertariat, tampilkan data warga sesuai dengan RT nya
+      // Jika user adalah RT/Sekretariat, tampilkan data warga sesuai dengan RT nya
       const rtId = user.rt_id;
       const rt = await Rt.findByPk(rtId, {
         include: [
