@@ -14,7 +14,7 @@ class controllerService {
 
       let message = `Layanan baru ${newService.name} berhasil dibuat.`;
 
-      req.status(201).json({ message });
+      res.status(201).json({ message });
     } catch (error) {
       next(error);
     }
