@@ -3,7 +3,7 @@ const ControllerRt = require('../controllers/controllerRt')
 const { authentication } = require('../middlewares/authentication')
 const { authorizationRt} = require('../middlewares/authorization')
 
-
+router.post('/rt/login', ControllerRt.loginRt)
 router.post('/rt/register', ControllerRt.registerRt) 
 router.post('/sekretariat/register', authentication, authorizationRt, ControllerRt.registerSekretariat)
 
