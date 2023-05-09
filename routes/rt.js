@@ -8,6 +8,11 @@ router.post('/rt/register', ControllerRt.registerRt)
 router.post('/sekretariat/register', authentication, authorizationRt, ControllerRt.registerSekretariat)
 
 router.get('/rt/users/submissions',authentication,authorizationRt, ControllerRt.findAllSubmissions) // find all semua persetujuan RT
+
+
+router.delete('/rt/users/submissions/:id',authentication,authorizationRt, ControllerRt.deletSubmission) // Delete submmisions
+
+
 router.patch('/rt/users/:id',authentication,authorizationRt, ControllerRt.approveUser) //persetujuan rt agar bisa login
 
 

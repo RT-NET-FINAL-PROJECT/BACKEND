@@ -160,6 +160,27 @@ class ControllerRt {
         }
     }
 
+    static async deletSubmission(req, res, next) {
+        try {
+            const { id } = req.params;
+            const submission = await Submission.findByPk(id);
+
+            if (!submission) {
+                throw { name: "DataNotFound" };
+            }
+
+            await submission.destroy({ where: { id } });
+
+            res.status(200).json({
+                message: `Data Persetujuna Dengan id ${id} berhasil dihapus`
+            });
+        } catch (error) {
+            console.log(error);
+            next(error);
+        }
+    }
+
+
 
     static async findAllWarga(req, res, next) {
         try {

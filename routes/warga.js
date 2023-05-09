@@ -31,7 +31,7 @@ router.delete('/users/guest/:id',authentication,authorizationTamu, ControllerUse
 
 //USER COMMENT
 router.post('/users/comment',authentication, ControllerUser.addComment)
-router.delete('/users/comment/:id',authentication,authorizationTamu,authorizationComment, ControllerUser.deleteComment)
+router.delete('/users/comment/:id',authentication,authorizationComment, ControllerUser.deleteComment)
 
 
 
