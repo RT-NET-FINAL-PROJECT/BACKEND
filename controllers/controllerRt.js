@@ -43,7 +43,7 @@ class ControllerRt {
     }
 
 
-    static async registerSekertariat(req, res, next) { //ini pak rt yang mendaftarkan sekertariat setelah login
+    static async registerSekretariat(req, res, next) { //ini pak rt yang mendaftarkan sekertariat setelah login
         try {
             console.log(req.body);
             let { namaLengkap, nomorTelp, email, password, rt_id } = req.body;
@@ -56,7 +56,7 @@ class ControllerRt {
                 email,
                 password,
                 rt_id,
-                role: "Sekertariat",
+                role: "Sekretariat",
                 nomorTelp,
                 status: true
             })

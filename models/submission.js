@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
       Submission.belongsTo(models.Service, {
         foreignKey: "service_id",
       });
+
+      Submission.hasMany(models.Attachment, {
+        foreignKey: "submission_id" 
+      })
     }
   }
   Submission.init(

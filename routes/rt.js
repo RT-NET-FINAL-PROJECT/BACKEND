@@ -5,7 +5,7 @@ const { authorizationRt} = require('../middlewares/authorization')
 
 
 router.post('/rt/register', ControllerRt.registerRt) 
-router.post('/sekertariat/register', authentication, authorizationRt, ControllerRt.registerSekertariat)
+router.post('/sekretariat/register', authentication, authorizationRt, ControllerRt.registerSekretariat)
 
 router.get('/rt/users/submissions',authentication,authorizationRt, ControllerRt.findAllSubmissions) // find all semua persetujuan RT
 router.patch('/rt/users/:id',authentication,authorizationRt, ControllerRt.approveUser) //persetujuan rt agar bisa login
