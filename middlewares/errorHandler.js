@@ -21,12 +21,12 @@ module.exports = async (error, req, res, next) => {
       break;
 
     case "SequelizeUniqueConstraintError":
-      message = "Email sudah terdaftar";
+      message = "Email / nomor telefon sudah terdaftar";
       status = 400;
       break;
 
     case "invalid_email/password":
-      message = "Email / passwor salah";
+      message = "Email / password salah";
       status = 401;
       break;
 

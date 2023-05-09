@@ -1,9 +1,10 @@
 const router = require('express').Router()
 const ControllerRt = require('../controllers/controllerRt')
+const { login } = require('../controllers/controllerUser')
 const { authentication } = require('../middlewares/authentication')
 const { authorizationRt} = require('../middlewares/authorization')
 
-router.post('/rt/login',)
+router.post('/rt/login', ControllerRt.loginRt)
 router.post('/rt/register', ControllerRt.registerRt) 
 router.post('/sekretariat/register', authentication, authorizationRt, ControllerRt.registerSekretariat)
 

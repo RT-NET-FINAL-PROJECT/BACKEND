@@ -1,3 +1,5 @@
+const { comparePassword } = require("../helpers/bcrypt");
+const { createToken } = require("../helpers/jwt");
 const {
   User,
   Rt,
@@ -10,6 +12,49 @@ const {
 const { Op } = require("sequelize");
 
 class ControllerRt {
+  static async loginRt(req, res, next) {
+    try {
+      try {
+        let { email, password } = req.body;
+        if (!email) throw { name: "email_required" };
+        if (!password) throw { name: "password_required" };
+
+        const findUser = await User.findOne({
+          where: {
+            email,
+          },
+        });
+
+        if (!findUser) throw { name: "invalid_email/password" };
+        if (findUser.status === false) throw { name: "account_pending" };
+        const passwordValidated = comparePassword(password, findUser.password);
+
+        if (!passwordValidated) throw { name: "invalid_email/password" };
+        const payload = {
+          id: findUser.id,
+        };
+
+        if (findUser.role === "Warga") throw { name: "Unauthorized" };
+
+        const access_token = createToken(payload);
+        console.log(access_token);
+
+        const response = {
+          access_token,
+          email: findUser.email,
+          userId: findUser.id,
+        };
+
+        res.status(200).json(response);
+      } catch (error) {
+        console.log(error);
+        next(error);
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
+
   static async getAllRt(req, res, next) {
     try {
       const rts = await Rt.findAll({ include: { model: User } });
