@@ -1,9 +1,8 @@
 const router = require('express').Router()
 const ControllerUser = require('../controllers/controllerUser')
+const upload = require('../helpers/multer')
 const { authentication } = require('../middlewares/authentication')
 const { authorizationRt, authorizationKendaraan, authorizationTamu, authorizationComment } = require('../middlewares/authorization')
-
-
 
 router.get('/', (req, res) => {
     res.status(200)
@@ -31,11 +30,11 @@ router.delete('/users/guest/:id',authentication,authorizationTamu, ControllerUse
 
 //USER COMMENT
 router.post('/users/comment',authentication, ControllerUser.addComment)
-router.delete('/users/comment/:id',authentication,authorizationTamu,authorizationComment, ControllerUser.deleteComment)
+router.delete('/users/comment/:id',authentication,authorizationComment, ControllerUser.deleteComment)
 
 
 
-router.put('/users/:id',authentication, ControllerUser.updateUser)//warga cuman bisa update data dia sendiri
+router.put('/users/:id',authentication,upload.any(), ControllerUser.updateUser)//warga cuman bisa update data dia sendiri
 router.get('/users/:id',authentication, ControllerUser.detailUser)//buat profile
 
 

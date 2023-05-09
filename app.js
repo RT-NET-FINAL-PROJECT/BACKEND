@@ -1,5 +1,5 @@
 if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
+    require("dotenv").config();
 }
 
 const express = require("express");
@@ -17,5 +17,5 @@ app.use(router);
 app.use(errorHandler);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+    console.log(`Example app listening on port ${port}`);
 });

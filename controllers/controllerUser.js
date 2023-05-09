@@ -9,6 +9,7 @@ const {
 } = require("../models");
 const { comparePassword } = require("../helpers/bcrypt");
 const { createToken } = require("../helpers/jwt");
+const ImageKit = require("imagekit");
 class ControllerUser {
   static async register(req, res, next) {
     try {
@@ -36,15 +37,15 @@ class ControllerUser {
         role: "Warga",
         status_keluarga,
         nomorTelp,
-        status: false, // set status pengajuan ke "Pending"
+        status: "pending", // set status pengajuan ke "Pending"
       });
 
       // tambahkan data pengajuan
       await Submission.create({
         user_id: newUser.id,
         rt_id: newUser.rt_id,
-        jenisPengajuan: "Register Warga",
-        status: false,
+        keterangan: "Register Warga",
+        status: "pending",
       });
 
       const { password: _, ...userWithoutPassword } = newUser.dataValues;
@@ -130,6 +131,8 @@ class ControllerUser {
 
   static async updateUser(req, res, next) {
     try {
+      let images = req.files;
+
       const { id } = req.params;
       const {
         namaLengkap,
@@ -155,6 +158,29 @@ class ControllerUser {
           name: "UserNotFound",
         };
       }
+
+      images = images.map((img) => {
+        img.buffer = img.buffer.toString("base64");
+        return img;
+      });
+
+      let imagekit = new ImageKit({
+        publicKey: "public_gl6Q51cfkxxtJbVZPJSNlzcPLzY=",
+        privateKey: "private_MS3sxSJXhbIh4Ijt8KE6mBndgOk=",
+        urlEndpoint: "https://ik.imagekit.io/your_imagekit_id/",
+      });
+
+      let imageUrls = await Promise.all(
+        images.map((img) => {
+          imagekit.upload(
+            {
+              file: img.buffer, //required
+              fileName: `${img.fieldname}.jpg`, //required
+            })
+        }) 
+      );
+
+      console.log(imageUrls);
 
       // Update user data
       await User.update(

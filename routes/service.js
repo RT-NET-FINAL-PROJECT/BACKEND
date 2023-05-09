@@ -1,4 +1,4 @@
-const { getAllServices, createService, getServiceDetail, editService } = require("../controllers/controllerService");
+const { getAllServices, createService, getServiceDetail, editService, deleteService } = require("../controllers/controllerService");
 const { updateRequestService, getAllSubmission, getSubmissionDetail, editSubmission, requestService, deleteSubmission } = require("../controllers/controllerSubmission");
 const upload = require("../helpers/multer");
 const { authentication } = require("../middlewares/authentication");
@@ -13,6 +13,7 @@ service.delete("/submissions/:submissionId", authentication, deleteSubmission);
 service.post("/services", authentication, createService);
 service.get("/services/:serviceId", authentication, getServiceDetail);
 service.put("/services/:serviceId", authentication, editService);
+service.delete("/services/:serviceId", authentication, deleteService);
 service.patch("/services/:serviceId/submissions/:submissionId", authentication, updateRequestService);
 
 module.exports = service;

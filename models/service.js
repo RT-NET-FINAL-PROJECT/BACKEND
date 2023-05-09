@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
           notNull: {msg: "Nama layanan dibutuhkan"},
         },
       },
+      dokumen_pendukung: DataTypes.STRING,
       rt_id: {
         type: DataTypes.INTEGER,
         allowNull: false,

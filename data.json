@@ -2,6 +2,7 @@
     "Rts": [
         {
             "kepala_rt": "Bondan",
+            "link_grup_wa" : "https://chat.whatsapp.com/Gumy5S3325g4aLMw5jT5A3",
             "nik_rt": "120298",
             "rt": "01",
             "rw": "012",
@@ -13,6 +14,7 @@
         {
             "kepala_rt": "Heru",
             "nik_rt": "1202988",
+            "link_grup_wa" : "https://example.com",
             "rt": "02",
             "rw": "012",
             "kelurahan": "Bojong Pondok Terong",
@@ -35,10 +37,10 @@
         {
             "namaLengkap": "Bondan Herutomo",
             "nomorTelp": "081234567890",
-            "role": "Rt",
+            "role": "RT",
             "rt_id": 1,
-            "email": "bondan@gmail.com",
-            "password": "bondan23",
+            "email": "bondanherutomo35@gmail.com",
+            "password": "bondan123",
             "status_keluarga": "Kepala Keluarga",
             "nomorKtp": "120298",
             "nomorKk": "120192393",
@@ -49,7 +51,7 @@
             "nomorTelp": "081234567891",
             "role": "Warga",
             "rt_id": 1,
-            "email": "budi@gmail.com",
+            "email": "oldtoon18@gmail.com",
             "password": "budi123",
             "status_keluarga": "Anggota Keluarga",
             "nomorKtp": "102913932",
@@ -57,12 +59,12 @@
             "status": "approved"
         },
         {
-            "namaLengkap": "Citra",
+            "namaLengkap": "vivi",
             "nomorTelp": "081234567892",
             "role": "Warga",
             "rt_id": 1,
-            "email": "citra@gmail.com",
-            "password": "citra123",
+            "email": "vivialfianautami@gmail.com",
+            "password": "vivi123",
             "status_keluarga": "Anggota Keluarga",
             "nomorKtp": "102913933",
             "nomorKk": "120192393",
@@ -268,18 +270,21 @@
     "Services": [
         {
             "name": "Layanan Surat Pengantar",
+            "dokumen_pendukung" : "www.example.com",
             "deskripsi": "Layanan untuk membuat surat pengantar ke instansi tertentu",
             "user_id": 2,
             "rt_id": 1
         },
         {
             "name": "Layanan Surat Domisili",
+            "dokumen_pendukung" : "www.example.com",
             "deskripsi": "Layanan untuk membuat surat domisili",
             "user_id": 2,
             "rt_id": 1
         },
         {
             "name": "Layanan Pengurusan Nikah",
+            "dokumen_pendukung" : "www.example.com",
             "deskripsi": "Layanan untuk mengurus persyaratan nikah",
             "user_id": 2,
             "rt_id": 1
@@ -340,18 +345,21 @@
     "Submissions": [
         {
             "user_id": 3,
+            "dokumen_pendukung" : "www.example.com",
             "rt_id": 1,
             "service_id": 1,
             "status": "pending"
         },
         {
             "user_id": 4,
+            "dokumen_pendukung" : "www.example.com",
             "rt_id": 1,
             "service_id": 1,
             "status": "pending"
         },
         {
             "user_id": 3,
+            "dokumen_pendukung" : "www.example.com",
             "rt_id": 1,
             "service_id": 2,
             "status": "pending"

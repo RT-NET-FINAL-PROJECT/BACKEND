@@ -12,6 +12,9 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
+      dokumen_pendukung:{
+        type: Sequelize.STRING,
+      },
       rt_id: {
         type: Sequelize.INTEGER,
         references: {

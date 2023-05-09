@@ -12,6 +12,9 @@ module.exports = {
       kepala_rt: {
         type: Sequelize.STRING
       },
+      link_grup_wa: {
+        type: Sequelize.STRING
+      },
       nik_rt:{
         type: Sequelize.STRING
       },
@@ -22,9 +25,6 @@ module.exports = {
         type: Sequelize.STRING
       },
       kelurahan: {
-        type: Sequelize.STRING
-      },
-      kecamatan: {
         type: Sequelize.STRING
       },
       kecamatan: {
