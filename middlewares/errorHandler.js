@@ -7,7 +7,7 @@ module.exports = async (error, req, res, next) => {
       message = "Fields required";
       status = 400;
       break;
-      
+
     case "account_pending":
       message = "Akun Sedang Menunggu Persetujuan RT";
       status = 404;
@@ -17,6 +17,21 @@ module.exports = async (error, req, res, next) => {
       message = error.errors.map((el) => {
         return (el = el.message);
       });
+      status = 400;
+      break;
+
+    case "invalid_email/password":
+      message = "Email/Password Salah!";
+      status = 401;
+      break;
+
+    case "email_required":
+      message = "Email Dibutuhkan!";
+      status = 400;
+      break;
+
+    case "password_required":
+      message = "Password Dibutuhkan!";
       status = 400;
       break;
 
@@ -43,10 +58,16 @@ module.exports = async (error, req, res, next) => {
       message = "Permintaan layanan tidak ditemukan";
       status = 404;
       break;
-      
+
     case "SERVICE_NOT_FOUND":
       message = "Layanan tidak ditemukan";
       status = 404;
+      break;
+
+
+    case "Forbidden":
+      message = "Anda tidak memiliki akses!";
+      status = 403;
       break;
 
     default:

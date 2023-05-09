@@ -23,14 +23,62 @@ module.exports = (sequelize, DataTypes) => {
   }
   Rt.init(
     {
-      kepala_rt: DataTypes.STRING,
-      nik_rt:DataTypes.STRING,
-      rt: DataTypes.STRING,
-      rw: DataTypes.STRING,
-      kelurahan: DataTypes.STRING,
-      kecamatan: DataTypes.STRING,
-      kecamatan: DataTypes.STRING,
-      kotaKabupaten: DataTypes.STRING,
+      kepala_rt:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: "Nama RT dibutuhkan",
+          notNull: "Nama RT dibutuhkan",
+        },
+      },
+      nik_rt:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: "NIK RT dibutuhkan",
+          notNull: "NIK RT dibutuhkan",
+        },
+      },
+      rt: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: "RT dibutuhkan",
+          notNull: "RT dibutuhkan",
+        },
+      },
+      rw: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: "RW dibutuhkan",
+          notNull: "RW dibutuhkan",
+        },
+      },
+      kelurahan: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: "Kelurahan dibutuhkan",
+          notNull: "Kelurahan dibutuhkan",
+        },
+      },
+      kecamatan:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: "Kecamatan dibutuhkan",
+          notNull: "Kecamatan dibutuhkan",
+        },
+      },
+      kotaKabupaten: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: "Kabupaten/Kota dibutuhkan",
+          notNull: "Kabupaten/Kota dibutuhkan",
+        },
+      },
       provinsi: DataTypes.STRING,
     },
     {

@@ -27,9 +27,6 @@ module.exports = {
       kecamatan: {
         type: Sequelize.STRING
       },
-      kecamatan: {
-        type: Sequelize.STRING
-      },
       kotaKabupaten: {
         type: Sequelize.STRING
       },
