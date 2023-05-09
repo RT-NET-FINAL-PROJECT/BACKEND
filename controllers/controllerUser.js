@@ -131,8 +131,6 @@ class ControllerUser {
 
   static async updateUser(req, res, next) {
     try {
-      let images = req.files;
-
       const { id } = req.params;
       const {
         namaLengkap,
@@ -158,29 +156,6 @@ class ControllerUser {
           name: "UserNotFound",
         };
       }
-
-      images = images.map((img) => {
-        img.buffer = img.buffer.toString("base64");
-        return img;
-      });
-
-      let imagekit = new ImageKit({
-        publicKey: "public_gl6Q51cfkxxtJbVZPJSNlzcPLzY=",
-        privateKey: "private_MS3sxSJXhbIh4Ijt8KE6mBndgOk=",
-        urlEndpoint: "https://ik.imagekit.io/your_imagekit_id/",
-      });
-
-      let imageUrls = await Promise.all(
-        images.map((img) => {
-          imagekit.upload(
-            {
-              file: img.buffer, //required
-              fileName: `${img.fieldname}.jpg`, //required
-            })
-        }) 
-      );
-
-      console.log(imageUrls);
 
       // Update user data
       await User.update(
@@ -210,6 +185,170 @@ class ControllerUser {
       });
     } catch (error) {
       console.log(error);
+      next(error);
+    }
+  }
+
+  static async addKtp(req, res, next) {
+    try {
+      let images = req.file;
+
+      images.buffer = images.buffer.toString("base64");
+
+      let imagekit = new ImageKit({
+        publicKey: "public_gl6Q51cfkxxtJbVZPJSNlzcPLzY=",
+        privateKey: "private_MS3sxSJXhbIh4Ijt8KE6mBndgOk=",
+        urlEndpoint: "https://ik.imagekit.io/your_imagekit_id/",
+      });
+
+      imagekit.upload(
+        {
+          file: images.buffer, //required
+          fileName: images.fieldname + ".jpg", //required
+        },
+        async function (error, result) {
+          try {
+            if (error) throw { name: "UPLOAD_FAILED" };
+            else {
+              console.log(result);
+              await User.update(
+                {
+                  ktpImg: result.url,
+                },
+                { where: { id: req.user.id } }
+              );
+            }
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      );
+
+      res.status(200).json({message: "Gambar KTP berhasil diunggah"})
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async addKartuKeluarga(req, res, next) {
+    try {
+      let images = req.file;
+
+      images.buffer = images.buffer.toString("base64");
+
+      let imagekit = new ImageKit({
+        publicKey: "public_gl6Q51cfkxxtJbVZPJSNlzcPLzY=",
+        privateKey: "private_MS3sxSJXhbIh4Ijt8KE6mBndgOk=",
+        urlEndpoint: "https://ik.imagekit.io/your_imagekit_id/",
+      });
+
+      imagekit.upload(
+        {
+          file: images.buffer, //required
+          fileName: images.fieldname + ".jpg", //required
+        },
+        async function (error, result) {
+          try {
+            if (error) throw { name: "UPLOAD_FAILED" };
+            else {
+              console.log(result);
+              await User.update(
+                {
+                  kkImg: result.url,
+                },
+                { where: { id: req.user.id } }
+              );
+            }
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      );
+
+      res.status(200).json({message: "Gambar Kartu Keluarga berhasil diunggah"})
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async addPhoto(req, res, next) {
+    try {
+      let images = req.file;
+
+      images.buffer = images.buffer.toString("base64");
+
+      let imagekit = new ImageKit({
+        publicKey: "public_gl6Q51cfkxxtJbVZPJSNlzcPLzY=",
+        privateKey: "private_MS3sxSJXhbIh4Ijt8KE6mBndgOk=",
+        urlEndpoint: "https://ik.imagekit.io/your_imagekit_id/",
+      });
+
+      imagekit.upload(
+        {
+          file: images.buffer, //required
+          fileName: images.fieldname + ".jpg", //required
+        },
+        async function (error, result) {
+          try {
+            if (error) throw { name: "UPLOAD_FAILED" };
+            else {
+              console.log(result);
+              await User.update(
+                {
+                  photoUrl: result.url,
+                },
+                { where: { id: req.user.id } }
+              );
+            }
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      );
+
+      res.status(200).json({message: "Gambar Profil berhasil diunggah"})
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async addAkta(req, res, next) {
+    try {
+      let images = req.file;
+
+      images.buffer = images.buffer.toString("base64");
+
+      let imagekit = new ImageKit({
+        publicKey: "public_gl6Q51cfkxxtJbVZPJSNlzcPLzY=",
+        privateKey: "private_MS3sxSJXhbIh4Ijt8KE6mBndgOk=",
+        urlEndpoint: "https://ik.imagekit.io/your_imagekit_id/",
+      });
+
+      imagekit.upload(
+        {
+          file: images.buffer, //required
+          fileName: images.fieldname + ".jpg", //required
+        },
+        async function (error, result) {
+          try {
+            if (error) throw { name: "UPLOAD_FAILED" };
+            else {
+              console.log(result);
+              await User.update(
+                {
+                  aktaImg: result.url,
+                },
+                { where: { id: req.user.id } }
+              );
+            }
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      );
+
+      res.status(200).json({message: "Akta kelahiran berhasil diunggah"})
+    } catch (error) {
       next(error);
     }
   }

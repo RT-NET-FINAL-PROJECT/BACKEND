@@ -32,12 +32,11 @@ router.delete('/users/guest/:id',authentication,authorizationTamu, ControllerUse
 router.post('/users/comment',authentication, ControllerUser.addComment)
 router.delete('/users/comment/:id',authentication,authorizationComment, ControllerUser.deleteComment)
 
-
-
-router.put('/users/:id',authentication,upload.any(), ControllerUser.updateUser)//warga cuman bisa update data dia sendiri
+router.put('/users/:id',authentication,upload.single("ktpImg"), ControllerUser.updateUser)//warga cuman bisa update data dia sendiri
+router.patch('/users/addktp',authentication,upload.single("ktpImg"), ControllerUser.addKtp)//warga cuman bisa update data dia sendiri
+router.patch('/users/addkk',authentication,upload.single("kkImg"), ControllerUser.addKartuKeluarga)//warga cuman bisa update data dia sendiri
+router.patch('/users/addphoto',authentication,upload.single("photoUrl"), ControllerUser.addPhoto)//warga cuman bisa update data dia sendiri
+router.patch('/users/addakta',authentication,upload.single("aktaImg"), ControllerUser.addAkta)//warga cuman bisa update data dia sendiri
 router.get('/users/:id',authentication, ControllerUser.detailUser)//buat profile
-
-
-
 
 module.exports = router

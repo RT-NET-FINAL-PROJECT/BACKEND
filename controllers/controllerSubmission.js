@@ -21,7 +21,6 @@ class ControllerSubmission {
         keterangan,
         status: "pending",
       });
-      console.log(lampiran);
 
       lampiran.buffer = lampiran.buffer.toString("base64");
 
