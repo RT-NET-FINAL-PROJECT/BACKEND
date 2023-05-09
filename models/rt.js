@@ -35,6 +35,18 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
+      link_grup_wa:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Link WhatApp dibutuhkan!"
+          },
+          notEmpty: {
+            msg: "Link WhatApp dibutuhkan!"
+          },
+        },
+      },
       nik_rt:{
         type: DataTypes.STRING,
         allowNull: false,

@@ -12,6 +12,9 @@ module.exports = {
       kepala_rt: {
         type: Sequelize.STRING
       },
+      link_grup_wa: {
+        type: Sequelize.STRING
+      },
       nik_rt:{
         type: Sequelize.STRING
       },
