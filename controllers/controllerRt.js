@@ -27,6 +27,8 @@ class ControllerRt {
                 id: findUser.id,
             }
 
+            if (findUser.role === "Warga") throw { name: "Unauthorized" };
+
             const access_token = createToken(payload)
             // console.log(access_token);
 
@@ -60,20 +62,20 @@ class ControllerRt {
 
     static async registerRt(req, res, next) { // ini pak rt register mandiri sebelum login
         try {
-            console.log(req.body);
-            let { namaLengkap, nomorTelp, email, password, rt_id, nomorKtp } = req.body;
-            const rt = await Rt.findByPk(rt_id);
-            if (!rt) {
-                throw { name: "RtNotFound" };
-            }
-            if (rt.nik_rt !== nomorKtp) { //melakukan validasi jika nik yg didaftarkan Admin tidak sama dengan nik yg diinput maka akan error
+            // console.log(req.body);
+            let { namaLengkap, nomorTelp, email, password, nomorKtp } = req.body;
+            // console.log(nomorKtp)
+            const rt = await Rt.findOne({ where: { nik_rt: nomorKtp } });
+            // console.log(rt)
+
+            if (rt.dataValues.nik_rt != nomorKtp) { //melakukan validasi jika nik yg didaftarkan Admin tidak sama dengan nik yg diinput maka akan error
                 throw { name: "Unauthorized" };
             }
             let newUser = await User.create({
                 namaLengkap,
                 email,
                 password,
-                rt_id,
+                rt_id:rt.id,
                 nomorKtp,
                 role: "RT",
                 nomorTelp,
