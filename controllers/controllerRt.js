@@ -98,7 +98,7 @@ class ControllerRt {
                 rt_id,
                 role: "Sekretariat",
                 nomorTelp,
-                status: true
+                status: "approved"
             })
             const { password: _, ...userWithoutPassword } = newUser.dataValues;
             res.status(201).json(userWithoutPassword)
@@ -218,7 +218,7 @@ class ControllerRt {
                 role: "Warga",
                 nomorKk,
                 nomorKtp,
-                status: true,
+                status: "approved",
                 rt_id: req.user.rt_id,
                 status_keluarga,
                 kkImg,
