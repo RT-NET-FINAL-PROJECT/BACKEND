@@ -96,6 +96,12 @@ class ControllerUser {
             const user = await User.findByPk(id, {
                 include: [
                     {
+                        model: Rt,
+                        attributes: {
+                            exclude: ['nik_rt']
+                        }
+                    },
+                    {
                         model: Vehicle,
                     },
                     {

@@ -3,6 +3,8 @@ const ControllerRt = require('../controllers/controllerRt')
 const { authentication } = require('../middlewares/authentication')
 const { authorizationRt} = require('../middlewares/authorization')
 
+router.get('/rt',ControllerRt.getAllRt) //yang bisa get all data warga hanya RT dan Sekertariat
+
 router.post('/rt/login', ControllerRt.loginRt)
 router.post('/rt/register', ControllerRt.registerRt) 
 router.post('/sekretariat/register', authentication, authorizationRt, ControllerRt.registerSekretariat)
@@ -13,7 +15,7 @@ router.get('/rt/users/submissions',authentication,authorizationRt, ControllerRt.
 router.delete('/rt/users/submissions/:id',authentication,authorizationRt, ControllerRt.deletSubmission) // Delete submmisions
 
 
-router.patch('/rt/users/:id',authentication,authorizationRt, ControllerRt.approveUser) //persetujuan rt agar bisa login
+// router.patch('/rt/users/:id',authentication,authorizationRt, ControllerRt.approveUser) //persetujuan rt agar bisa login
 
 
 router.get('/rt/users', authentication, authorizationRt, ControllerRt.findAllWarga) //yang bisa get all data warga hanya RT dan Sekertariat

@@ -45,13 +45,18 @@ class ControllerRt {
 
     static async getAllRt(req, res, next) {
         try {
-            const rts = await Rt.findAll({include: {model:User}});
+            const rts = await Rt.findAll({
+                attributes: {
+                    exclude: ["nik_rt","link_grup_wa"]
+                }
+            });
             res.status(200).json(rts);
         } catch (error) {
             console.log(error);
             next(error);
         }
     }
+
 
     static async registerRt(req, res, next) { // ini pak rt register mandiri sebelum login
         try {
@@ -108,36 +113,36 @@ class ControllerRt {
         }
     }
 
-    static async approveUser(req, res, next) {
-        try {
-            const { id } = req.params;
+    // static async approveUser(req, res, next) {
+    //     try {
+    //         const { id } = req.params;
 
-            const user = await User.findByPk(id);
-            if (!user) {
-                throw { name: "UserNotFound" };
-            }
+    //         const user = await User.findByPk(id);
+    //         if (!user) {
+    //             throw { name: "UserNotFound" };
+    //         }
 
-            user.status = "approved"; // ubah status user menjadi "Aktif"
-            await user.save();
+    //         user.status = "approved"; // ubah status user menjadi "Aktif"
+    //         await user.save();
 
-            const pengajuan = await Submission.findOne({
-                where: {
-                    user_id: id
-                }
-            });
-            if (!pengajuan) {
-                throw { name: "PengajuanNotFound" };
-            }
+    //         const pengajuan = await Submission.findOne({
+    //             where: {
+    //                 user_id: id
+    //             }
+    //         });
+    //         if (!pengajuan) {
+    //             throw { name: "PengajuanNotFound" };
+    //         }
 
-            pengajuan.status = "approved"; // ubah status pengajuan menjadi "Disetujui"
-            await pengajuan.save();
+    //         pengajuan.status = "approved"; // ubah status pengajuan menjadi "Disetujui"
+    //         await pengajuan.save();
 
-            res.status(200).json(user);
-        } catch (error) {
-            console.log(error);
-            next(error);
-        }
-    }
+    //         res.status(200).json(user);
+    //     } catch (error) {
+    //         console.log(error);
+    //         next(error);
+    //     }
+    // }
 
 
     static async findAllSubmissions(req, res, next) { // find All semua yg harus di acc rt sesuai rt_id

@@ -113,6 +113,8 @@ class ControllerSubmission {
   }
 
   static async updateRequestService(req, res, next) {
+
+
     try {
       const { serviceId, submissionId } = req.params;
       const { inputStatus } = req.query;
@@ -120,8 +122,16 @@ class ControllerSubmission {
       const service = await Service.findByPk(serviceId);
       if (!service) throw { name: "SERVICE_NOT_FOUND" };
 
+      const warga = await User.findByPk(serviceId);
+      if (!warga) throw { name: "SERVICE_NOT_FOUND" };
+
+      warga.status = inputStatus;
+
+
       const request = await Submission.findByPk(submissionId);
       if (!request) throw { name: "SUBMISSION_NOT_FOUND" };
+
+
 
       await Submission.update(
         {
@@ -147,6 +157,8 @@ class ControllerSubmission {
       next(error);
     }
   }
+
+
 
   static async deleteSubmission(req, res, next) {
     try {
