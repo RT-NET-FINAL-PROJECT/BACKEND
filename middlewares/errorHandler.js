@@ -13,12 +13,12 @@ module.exports = async (error, req, res, next) => {
       status = 404;
       break;
 
-    case "SequelizeValidationError":
-      message = error.errors.map((el) => {
-        return (el = el.message);
-      });
-      status = 400;
-      break;
+      case "SequelizeValidationError":
+        case "SequelizeUniqueConstainError":
+            status = 400
+            message = error.errors[0].message
+            console.log(error);
+            break;
 
     case "invalid_email/password":
       message = "Email/Password Salah!";

@@ -27,56 +27,84 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty: "Nama RT dibutuhkan",
-          notNull: "Nama RT dibutuhkan",
+          notNull: {
+            msg: "Nama RT dibutuhkan!"
+          },
+          notEmpty: {
+            msg: "Nama RT dibutuhkan!"
+          },
         },
       },
       nik_rt:{
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty: "NIK RT dibutuhkan",
-          notNull: "NIK RT dibutuhkan",
+          notNull: {
+            msg: "NIK RT dibutuhkan!"
+          },
+          notEmpty: {
+            msg: "NIK RT dibutuhkan!"
+          },
         },
       },
       rt: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty: "RT dibutuhkan",
-          notNull: "RT dibutuhkan",
+          notNull: {
+            msg: "RT dibutuhkan!"
+          },
+          notEmpty: {
+            msg: "RT dibutuhkan!"
+          },
         },
       },
       rw: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty: "RW dibutuhkan",
-          notNull: "RW dibutuhkan",
+          notNull: {
+            msg: "RW dibutuhkan!"
+          },
+          notEmpty: {
+            msg: "RW dibutuhkan!"
+          },
         },
       },
       kelurahan: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty: "Kelurahan dibutuhkan",
-          notNull: "Kelurahan dibutuhkan",
+          notNull: {
+            msg: "Kelurahan dibutuhkan!"
+          },
+          notEmpty: {
+            msg: "Kelurahan dibutuhkan!"
+          },
         },
       },
       kecamatan:{
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty: "Kecamatan dibutuhkan",
-          notNull: "Kecamatan dibutuhkan",
+          notNull: {
+            msg: "Kecamatan dibutuhkan!"
+          },
+          notEmpty: {
+            msg: "Kecamatan dibutuhkan!"
+          },
         },
       },
       kotaKabupaten: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty: "Kabupaten/Kota dibutuhkan",
-          notNull: "Kabupaten/Kota dibutuhkan",
+          notNull: {
+            msg: "Kabupaten/Kota dibutuhkan!"
+          },
+          notEmpty: {
+            msg: "Kabupaten/Kota dibutuhkan!"
+          },
         },
       },
       provinsi: DataTypes.STRING,
