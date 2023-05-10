@@ -16,6 +16,7 @@ class ControllerEvent {
       next(error);
     }
   }
+  
   static async findAllEvent(req, res, next) {
     try {
       let options = {
@@ -68,10 +69,6 @@ class ControllerEvent {
     }
   }
 
-
-
-
-
   static async createEvent(req, res, next) {
     try {
       const { name, deskripsi, kategori, lokasi, biaya } = req.body;
@@ -98,9 +95,6 @@ class ControllerEvent {
       next(error);
     }
   }
-
-
-
 
   static async updateEvent(req, res, next) {
     //aman
