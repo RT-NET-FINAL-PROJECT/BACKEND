@@ -134,7 +134,10 @@ class ControllerUser {
             model: Guest,
           },
           {
-            model: Rt
+            model: Rt,
+            attributes: {
+              exclude: ['nik_rt']
+            }
           }
         ],
 
@@ -145,7 +148,7 @@ class ControllerUser {
 
       if (!user) {
         throw {
-          name: "User Not Found",
+          name: "UUSER_NOT_FOUND",
         };
       }
 
