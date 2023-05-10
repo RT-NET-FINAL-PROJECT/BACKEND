@@ -1,5 +1,6 @@
 const ImageKit = require("imagekit");
 const { Service, Submission, Rt, User, Attachment } = require("../models");
+const { sendEmailToResidents } = require("../helpers/serviceSMTP");
 
 class ControllerSubmission {
   static async requestService(req, res, next) {
@@ -7,7 +8,7 @@ class ControllerSubmission {
     try {
       const lampiran = req.file;
       const { serviceId } = req.params;
-      const { keterangan } = req.body;
+      const { keperluan } = req.body;
 
       const service = await Service.findByPk(serviceId);
       if (!service) throw { name: "SERVICE_NOT_FOUND" };
@@ -18,7 +19,8 @@ class ControllerSubmission {
         user_id: req.user.id,
         rt_id: req.user.rt_id,
         service_id: service.id,
-        keterangan,
+        keterangan: service.name,
+        keperluan,
         status: "pending",
       });
 
@@ -62,6 +64,43 @@ class ControllerSubmission {
       let options = {
         where: {
           rt_id: req.user.rt_id,
+        },
+        include: [
+          {
+            model: User,
+            attributes: {
+              exclude: ["createdAt", "updatedAt", "password"],
+            },
+          },
+          {
+            model: Service,
+            attributes: {
+              exclude: ["createdAt", "updatedAt"],
+            },
+          },
+        ],
+      };
+
+      if (status) {
+        options.where.status = status;
+      }
+
+      const requests = await Submission.findAll(options);
+
+      res.status(200).json(requests);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+
+  static async getUserSubmission(req, res, next) {
+    try {
+      const { status } = req.query;
+
+      let options = {
+        where: {
+          user_id: req.user.id,
         },
         include: [
           {
@@ -141,7 +180,6 @@ class ControllerSubmission {
 
   static async updateRequestService(req, res, next) {
 
-
     try {
       const { serviceId, submissionId } = req.params;
       const { inputStatus } = req.query;
@@ -154,11 +192,8 @@ class ControllerSubmission {
 
       warga.status = inputStatus;
 
-
       const request = await Submission.findByPk(submissionId);
       if (!request) throw { name: "SUBMISSION_NOT_FOUND" };
-
-
 
       await Submission.update(
         {
@@ -177,7 +212,7 @@ class ControllerSubmission {
         message += "berhasil diproses dan sudah diambil di rumah pak rt";
       }
 
-      console.log(inputStatus);
+      await sendEmailToResidents(request);
 
       res.status(200).json({ message });
     } catch (error) {

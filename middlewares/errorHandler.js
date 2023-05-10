@@ -50,6 +50,7 @@ module.exports = async (error, req, res, next) => {
       status = 401;
       break;
 
+    case "JsonWebTokenError":
     case "InvalidToken":
       message = "Invalid Token";
       status = 401;

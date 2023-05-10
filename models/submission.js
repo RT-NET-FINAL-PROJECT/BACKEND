@@ -38,6 +38,9 @@ module.exports = (sequelize, DataTypes) => {
         values: ["pending", "in progress", "approved", "done"],
       },
       keterangan: DataTypes.STRING,
+      keperluan: {
+        type: DataTypes.STRING,
+      }
     },
     {
       sequelize,

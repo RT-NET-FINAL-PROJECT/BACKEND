@@ -32,7 +32,7 @@
             "email": "admin@admin.com",
             "password": "admin123",
             "status_keluarga": "Kepala Keluarga",
-            "status": "done"
+            "status": "approved"
         },
         {
             "namaLengkap": "Bondan Herutomo",
@@ -44,7 +44,7 @@
             "status_keluarga": "Kepala Keluarga",
             "nomorKtp": "120298",
             "nomorKk": "999999999",
-            "status": "done"
+            "status": "approved"
         },
         {
             "namaLengkap": "Heru",
@@ -56,7 +56,7 @@
             "status_keluarga": "Kepala Keluarga",
             "nomorKtp": "102913932",
             "nomorKk": "120192393",
-            "status": "done"
+            "status": "approved"
         },
         {
             "namaLengkap": "vivi",
@@ -68,7 +68,7 @@
             "status_keluarga": "Anggota Keluarga",
             "nomorKtp": "102913933",
             "nomorKk": "120192393",
-            "status": "done"
+            "status": "approved"
         },
         {
             "namaLengkap": "Dina",
@@ -80,7 +80,7 @@
             "status_keluarga": "Anggota Keluarga",
             "nomorKtp": "102913934",
             "nomorKk": "120192393",
-            "status": "done"
+            "status": "approved"
         },
         {
             "namaLengkap": "Edwardo",
@@ -92,7 +92,7 @@
             "status_keluarga": "Anggota Keluarga",
             "nomorKtp": "102913935",
             "nomorKk": "120192393",
-            "status": "done"
+            "status": "approved"
         },
         {
             "namaLengkap": "Fajar",
@@ -104,7 +104,7 @@
             "status_keluarga": "Anggota Keluarga",
             "nomorKtp": "102913936",
             "nomorKk": "120192393987",
-            "status": "done"
+            "status": "approved"
         },
         {
             "namaLengkap": "Sahrul",
@@ -116,7 +116,7 @@
             "status_keluarga": "Anggota Keluarga",
             "nomorKtp": "102913937",
             "nomorKk": "120192393986",
-            "status": "done"
+            "status": "approved"
         },
         {
             "namaLengkap": "frisy",
@@ -128,7 +128,7 @@
             "status_keluarga": "Anggota Keluarga",
             "nomorKtp": "1029139371",
             "nomorKk": "12019239339865",
-            "status": "done"
+            "status": "approved"
         }
     ],
     "Posts": [

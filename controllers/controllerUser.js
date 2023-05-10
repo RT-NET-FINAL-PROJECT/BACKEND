@@ -10,6 +10,7 @@ const {
 const { comparePassword } = require("../helpers/bcrypt");
 const { createToken } = require("../helpers/jwt");
 const ImageKit = require("imagekit");
+const submission = require("../models/submission");
 class ControllerUser {
   static async register(req, res, next) {
     try {
@@ -41,7 +42,7 @@ class ControllerUser {
       });
 
       // tambahkan data pengajuan
-      await Submission.create({
+      const newSubmission = await Submission.create({
         user_id: newUser.id,
         rt_id: newUser.rt_id,
         keterangan: "Register Warga",
@@ -49,7 +50,7 @@ class ControllerUser {
       });
 
       const { password: _, ...userWithoutPassword } = newUser.dataValues;
-      res.status(201).json(userWithoutPassword);
+      res.status(201).json({user: userWithoutPassword, submission: newSubmission});
     } catch (error) {
       console.log(error);
       next(error);

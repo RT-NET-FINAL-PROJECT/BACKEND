@@ -103,7 +103,7 @@ class ControllerRt {
     try {
       // console.log(req.body);
       let { namaLengkap, nomorTelp, email, password, nomorKtp } = req.body;
-  
+
       let newUser = await User.create({
         namaLengkap,
         email,
@@ -114,7 +114,7 @@ class ControllerRt {
         nomorTelp,
         status: "approved",
       });
-      
+
       const { password: _, ...userWithoutPassword } = newUser.dataValues;
       res.status(201).json(userWithoutPassword);
     } catch (error) {
@@ -307,6 +307,37 @@ class ControllerRt {
       });
     } catch (error) {
       console.log(error);
+      next(error);
+    }
+  }
+
+  static async updateRequestWarga(req, res, next) {
+    try {
+      const { userId, submissionId } = req.params;
+      const { inputStatus } = req.query;
+
+      const user = await User.findByPk(userId);
+      if (!user) throw { name: "SERVICE_NOT_FOUND" };
+
+      if (inputStatus === "approved") {
+        user.status = inputStatus; // ubah status user menjadi "done"
+        await user.save();
+      }
+
+      const request = await Submission.findByPk(submissionId);
+      if (!request) throw { name: "SUBMISSION_NOT_FOUND" };
+
+      await Submission.update(
+        {
+          status: inputStatus,
+        },
+        { where: { id: request.id } }
+      );
+
+      let message = `${user.namaLengkap}  "sudah disetujui pak rt `;
+
+      res.status(200).json({ message });
+    } catch (error) {
       next(error);
     }
   }

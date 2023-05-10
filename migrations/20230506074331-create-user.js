@@ -34,7 +34,7 @@ module.exports = {
       },
       status: {
         type: Sequelize.ENUM,
-        values: ["pending", "in progress", "approved", "done"],
+        values: ["pending", "approved"],
         defaultValue: "pending"
       },
       rt_id: {

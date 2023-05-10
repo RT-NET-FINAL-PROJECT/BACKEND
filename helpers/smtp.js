@@ -8,8 +8,8 @@ async function sendEmailToResidents(event) {
         port: 2525,
         secure: false,
         auth: {
-            user: "oldtoon18@gmail.com",
-            pass: "2A2074961839273045A01300E814E4EA0FE3",
+            user: "bocahtelengria@gmail.com",
+            pass: "2A1593F69C185F36642FDE0E3D7660EDE93F",
         },
     });
 
@@ -23,7 +23,7 @@ async function sendEmailToResidents(event) {
     // Mengirim email ke setiap warga
     for (let i = 0; i < residents.length; i++) {
         const mailOptions = {
-            from: "RT-NET-SEKERTARIAT <oldtoon18@gmail.com>",
+            from: "RT-NET-SEKERTARIAT <bocahtelengria@gmail.com>",
             to: residents[i].email,
             subject: "Pemberitahuan Event Baru",
             text: `Halo, ada event baru nih di RT kita. Berikut adalah detailnya:\n\n` +
