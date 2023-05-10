@@ -69,7 +69,7 @@ class ControllerUser {
       });
 
       if (!findUser) throw { name: "invalid_email/password" };
-      if (findUser.status === false) throw { name: "account_pending" };
+      if (findUser.status === "pending") throw { name: "account_pending" };
       const passwordValidated = comparePassword(password, findUser.password);
 
       if (!passwordValidated) throw { name: "invalid_email/password" };
