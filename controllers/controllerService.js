@@ -3,11 +3,12 @@ const { Service, Submission, Rt, User } = require("../models");
 class controllerService {
   static async createService(req, res, next) {
     try {
-      const { name, deskripsi } = req.body;
+      const { name, deskripsi, dokumen_pendukung } = req.body;
 
       const newService = await Service.create({
         name,
         deskripsi,
+        dokumen_pendukung,
         user_id: req.user.id,
         rt_id: req.user.rt_id,
       });
@@ -82,12 +83,12 @@ class controllerService {
   static async editService(req, res, next) {
     try {
       const { serviceId } = req.params;
-      const { name, deskripsi } = req.body;
+      const { name, deskripsi, dokumen_pendukung } = req.body;
 
       const service = await Service.findByPk(serviceId);
       if (!service) throw { name: "SERVICE_NOT_FOUND" };
 
-      await Service.update({ name, deskripsi }, { where: { id: service.id } });
+      await Service.update({ name, deskripsi, dokumen_pendukung }, { where: { id: service.id } });
 
       const message = `Data layanan ${service.name} berhasil diubah.`;
 

@@ -148,7 +148,7 @@ class ControllerUser {
 
       if (!user) {
         throw {
-          name: "UUSER_NOT_FOUND",
+          name: "USER_NOT_FOUND",
         };
       }
 
