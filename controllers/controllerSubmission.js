@@ -24,30 +24,32 @@ class ControllerSubmission {
         status: "pending",
       });
 
-      lampiran.buffer = lampiran.buffer.toString("base64");
+      if (lampiran) {
+        lampiran.buffer = lampiran.buffer.toString("base64");
 
-      let imagekit = new ImageKit({
-        publicKey: "public_gl6Q51cfkxxtJbVZPJSNlzcPLzY=",
-        privateKey: "private_MS3sxSJXhbIh4Ijt8KE6mBndgOk=",
-        urlEndpoint: "https://ik.imagekit.io/your_imagekit_id/",
-      });
+        let imagekit = new ImageKit({
+          publicKey: "public_gl6Q51cfkxxtJbVZPJSNlzcPLzY=",
+          privateKey: "private_MS3sxSJXhbIh4Ijt8KE6mBndgOk=",
+          urlEndpoint: "https://ik.imagekit.io/your_imagekit_id/",
+        });
 
-      imagekit.upload(
-        {
-          file: lampiran.buffer, //required
-          fileName: "my_file_name.jpg", //required
-        },
-        async function (error, result) {
-          if (error) throw { name: "UPLOAD_FAILED" };
-          else {
-            console.log(result);
-            await Attachment.create({
-              attachUrl: result.url,
-              submission_id: newService.id,
-            });
+        imagekit.upload(
+          {
+            file: lampiran.buffer, //required
+            fileName: "my_file_name.jpg", //required
+          },
+          async function (error, result) {
+            if (error) throw { name: "UPLOAD_FAILED" };
+            else {
+              console.log(result);
+              await Attachment.create({
+                attachUrl: result.url,
+                submission_id: newService.id,
+              });
+            }
           }
-        }
-      );
+        );
+      }
 
       const message = `Permintaan ${service.name} berhasil dibuat.`;
 
@@ -92,7 +94,6 @@ class ControllerSubmission {
       next(error);
     }
   }
-
 
   static async getUserSubmission(req, res, next) {
     try {
@@ -179,7 +180,6 @@ class ControllerSubmission {
   }
 
   static async updateRequestService(req, res, next) {
-
     try {
       const { serviceId, submissionId } = req.params;
       const { inputStatus } = req.query;
