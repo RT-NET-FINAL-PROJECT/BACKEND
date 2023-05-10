@@ -97,7 +97,7 @@ class ControllerUser {
 
   static async getKeluarga(req, res, next) {
     try {
-      const user = await User.findByPk(req.params.id);
+      const user = await User.findByPk(req.user.id);
       if (!user) {
           return res.status(404).json({ message: "USER_NOT_FOUND" });
       }
