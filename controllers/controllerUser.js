@@ -133,6 +133,9 @@ class ControllerUser {
           {
             model: Guest,
           },
+          {
+            model: Rt
+          }
         ],
 
         attributes: {
