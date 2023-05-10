@@ -1,6 +1,21 @@
 const { Post, Comment, User } = require("../models");
 const { sendEmailToResidents } = require("../helpers/smtp")
 class ControllerEvent {
+  static async findAllPosts(req, res, next) {
+    try {
+      let options = {
+        where: {
+          rt_id: req.user.rt_id,
+        },
+      };
+
+      const events = await Post.findAll(options);
+
+      res.status(200).json(events);
+    } catch (error) {
+      next(error);
+    }
+  }
   static async findAllEvent(req, res, next) {
     try {
       let options = {
