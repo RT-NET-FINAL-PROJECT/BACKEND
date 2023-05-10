@@ -37,32 +37,32 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty: "Nama lengkap dibutuhkan",
-          notNull: "Nama lengkap dibutuhkan",
+          notEmpty: {msg: "Nama lengkap dibutuhkan"},
+          notNull: {msg: "Nama lengkap dibutuhkan"},
         },
       },
       nomorTelp: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty: "Nomor Telepon dibutuhkan",
-          notNull: "Nomor Telepon dibutuhkan",
+          notEmpty: {msg : "Nomor Telepon dibutuhkan"},
+          notNull: {msg : "Nomor Telepon dibutuhkan"},
         },
       },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty: "Email dibutuhkan",
-          notNull: "Email dibutuhkan",
+          notEmpty: {msg: "Email dibutuhkan"},
+          notNull: {msg: "Email dibutuhkan"},
         },
       },
       password: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty: "Password dibutuhkan",
-          notNull: "Password dibutuhkan",
+          notEmpty: {msg: "Password dibutuhkan"},
+          notNull: {msg: "Password dibutuhkan"},
         },
       },
       role: {
@@ -78,8 +78,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty: "NIK dibutuhkan",
-          notNull: "NIK dibutuhkan",
+          notEmpty: {msg: "NIK dibutuhkan"},
+          notNull: {msg: "NIK dibutuhkan"},
         },
       },
       status: {
@@ -90,8 +90,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
-          notEmpty: "RT dibutuhkan",
-          notNull: "RT dibutuhkan",
+          notEmpty: {msg: "RT dibutuhkan"},
+          notNull: {msg: "RT dibutuhkan"},
         },
       },
       status_keluarga: {

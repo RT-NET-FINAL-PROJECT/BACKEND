@@ -21,8 +21,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty: "Nama layanan dibutuhkan",
-          notNull: "Nama layanan dibutuhkan",
+          notEmpty: {msg: "Nama layanan dibutuhkan"},
+          notNull: {msg: "Nama layanan dibutuhkan"},
         },
       },
       dokumen_pendukung: DataTypes.STRING,
@@ -30,16 +30,16 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
-          notEmpty: "RT dibutuhkan",
-          notNull: "RT dibutuhkan",
+          notEmpty: {msg: "RT dibutuhkan"},
+          notNull: {msg: "RT dibutuhkan"},
         },
       },
       user_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
-          notEmpty: "Data pengguna dibutuhkan",
-          notNull: "Data pengguna dibutuhkan",
+          notEmpty: {msg: "Data pengguna dibutuhkan"},
+          notNull: {msg: "Data pengguna dibutuhkan"},
         },
       },
       deskripsi: DataTypes.TEXT,

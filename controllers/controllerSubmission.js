@@ -1,9 +1,11 @@
-const { Service, Submission, Rt, User } = require("../models");
+const ImageKit = require("imagekit");
+const { Service, Submission, Rt, User, Attachment } = require("../models");
 
 class ControllerSubmission {
   static async requestService(req, res, next) {
     //untuk user
     try {
+      const lampiran = req.file;
       const { serviceId } = req.params;
       const { keterangan } = req.body;
 
@@ -19,6 +21,31 @@ class ControllerSubmission {
         keterangan,
         status: "pending",
       });
+
+      lampiran.buffer = lampiran.buffer.toString("base64");
+
+      let imagekit = new ImageKit({
+        publicKey: "public_gl6Q51cfkxxtJbVZPJSNlzcPLzY=",
+        privateKey: "private_MS3sxSJXhbIh4Ijt8KE6mBndgOk=",
+        urlEndpoint: "https://ik.imagekit.io/your_imagekit_id/",
+      });
+
+      imagekit.upload(
+        {
+          file: lampiran.buffer, //required
+          fileName: "my_file_name.jpg", //required
+        },
+        async function (error, result) {
+          if (error) throw { name: "UPLOAD_FAILED" };
+          else {
+            console.log(result);
+            await Attachment.create({
+              attachUrl: result.url,
+              submission_id: newService.id,
+            });
+          }
+        }
+      );
 
       const message = `Permintaan ${service.name} berhasil dibuat.`;
 
@@ -169,7 +196,9 @@ class ControllerSubmission {
         where: { id: request.id },
       });
 
-      res.status(200).json({ message: `Permintaan layanan dengan id ${request.id} berhasil dihapus` });
+      res.status(200).json({
+        message: `Permintaan layanan dengan id ${request.id} berhasil dihapus`,
+      });
     } catch (error) {
       next(error);
     }
