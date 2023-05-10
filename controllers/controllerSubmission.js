@@ -158,8 +158,6 @@ class ControllerSubmission {
     }
   }
 
-
-
   static async deleteSubmission(req, res, next) {
     try {
       const { submissionId } = req.params;
