@@ -8,7 +8,7 @@ router.get("/posts", authentication, ControllerEvent.findAllPosts);
 router.get("/pengumuman", authentication, ControllerEvent.findAllAnnouncements);
 router.post("/event", authentication,authorizationRt, ControllerEvent.createEvent);
 
-router.put("/event/:id",authentication,authorizationRt, ControllerEvent.updateEvent);
+router.put("/event/:id",authentication, authorizationRt, ControllerEvent.updateEvent);
 router.get("/event/:id", authentication, ControllerEvent.detailEvent);
 router.delete("/event/:id", authentication,authorizationRt, ControllerEvent.deleteEvent);
 

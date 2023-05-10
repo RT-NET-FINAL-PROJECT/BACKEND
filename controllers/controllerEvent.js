@@ -99,13 +99,13 @@ class ControllerEvent {
   static async updateEvent(req, res, next) {
     //aman
     try {
-      const { postId } = req.params;
+      const { id } = req.params;
       const { name, deskripsi, kategori, lokasi, biaya } = req.body;
 
       if (!name || !deskripsi || !kategori || !lokasi || !biaya)
         throw { name: "NO_INPUT" };
 
-      const event = await Post.findByPk(postId);
+      const event = await Post.findByPk(id);
       if (!event) throw { name: "POST_NOT_FOUND" };
 
       await Post.update(
