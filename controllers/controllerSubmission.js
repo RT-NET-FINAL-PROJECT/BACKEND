@@ -1,6 +1,7 @@
 const ImageKit = require("imagekit");
 const { Service, Submission, Rt, User, Attachment } = require("../models");
 const { sendEmailToResidents } = require("../helpers/serviceSMTP");
+const { Op } = require("sequelize");
 
 class ControllerSubmission {
   static async requestService(req, res, next) {
@@ -25,6 +26,7 @@ class ControllerSubmission {
       });
 
       if (lampiran) {
+        console.log("lampiran ada");
         lampiran.buffer = lampiran.buffer.toString("base64");
 
         let imagekit = new ImageKit({
@@ -49,6 +51,8 @@ class ControllerSubmission {
             }
           }
         );
+      } else {
+        console.log("lampiran ngga");
       }
 
       const message = `Permintaan ${service.name} berhasil dibuat.`;
@@ -83,9 +87,69 @@ class ControllerSubmission {
         ],
       };
 
-      if (status) {
-        options.where.status = status;
-      }
+      options.where.status = "pending";
+
+      const requests = await Submission.findAll(options);
+
+      res.status(200).json(requests);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async getAllSubmissionService(req, res, next) {
+    try {
+      let options = {
+        where: {
+          rt_id: req.user.rt_id,
+          service_id: { [Op.not]: null },
+        },
+        include: [
+          {
+            model: User,
+            attributes: {
+              exclude: ["createdAt", "updatedAt", "password"],
+            },
+          },
+          {
+            model: Service,
+            attributes: {
+              exclude: ["createdAt", "updatedAt"],
+            },
+          },
+        ],
+      };
+
+      const requests = await Submission.findAll(options);
+
+      res.status(200).json(requests);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async getRegisterSubmission(req, res, next) {
+    try {
+      let options = {
+        where: {
+          rt_id: req.user.rt_id,
+          service_id: null,
+        },
+        include: [
+          {
+            model: User,
+            attributes: {
+              exclude: ["createdAt", "updatedAt", "password"],
+            },
+          },
+          {
+            model: Service,
+            attributes: {
+              exclude: ["createdAt", "updatedAt"],
+            },
+          },
+        ],
+      };
 
       const requests = await Submission.findAll(options);
 
