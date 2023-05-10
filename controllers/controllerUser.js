@@ -116,32 +116,11 @@ class ControllerUser {
         },
       });
 
-<<<<<<< HEAD
-            const user = await User.findByPk(id, {
-                include: [
-                    {
-                        model: Rt,
-                        attributes: {
-                            exclude: ['nik_rt']
-                        }
-                    },
-                    {
-                        model: Vehicle,
-                    },
-                    {
-                        model: Service,
-                    },
-                    {
-                        model: Guest,
-                    },
-                ],
-=======
       if (!user) {
         throw {
           name: "User Not Found",
         };
       }
->>>>>>> 76bae8e50fda9474269520c1d3679c235a36902d
 
       res.status(200).json(user);
     } catch (error) {

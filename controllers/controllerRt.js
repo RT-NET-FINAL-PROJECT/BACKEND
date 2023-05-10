@@ -12,7 +12,6 @@ const { createToken } = require("../helpers/jwt");
 const { Op } = require("sequelize");
 
 class ControllerRt {
-<<<<<<< HEAD
   static async loginRt(req, res, next) {
     try {
       let { email, password } = req.body;
@@ -24,13 +23,6 @@ class ControllerRt {
           email,
         },
       });
-=======
-    static async loginRt(req, res, next) {
-        try {
-            let { email, password } = req.body
-            if (!email) throw { name: "email_required" }
-            if (!password) throw { name: "password_required" }
->>>>>>> 76bae8e50fda9474269520c1d3679c235a36902d
 
       if (!findUser) throw { name: "invalid_email/password" };
       if (findUser.status === "pending") throw { name: "account_pending" };
@@ -41,13 +33,7 @@ class ControllerRt {
         id: findUser.id,
       };
 
-<<<<<<< HEAD
       if (findUser.role === "Warga") throw { name: "Unauthorized" };
-=======
-            if (!findUser) throw { name: "invalid_email/password" }
-            if (findUser.status === "pending") throw { name: "account_pending" }
-            const passwordValidated = comparePassword(password, findUser.password);
->>>>>>> 76bae8e50fda9474269520c1d3679c235a36902d
 
       const access_token = createToken(payload);
       // console.log(access_token);
@@ -77,11 +63,7 @@ class ControllerRt {
       console.log(error);
       next(error);
     }
-<<<<<<< HEAD
   }
-=======
-  
->>>>>>> 76bae8e50fda9474269520c1d3679c235a36902d
 
   static async registerRt(req, res, next) {
     // ini pak rt register mandiri sebelum login
@@ -114,11 +96,7 @@ class ControllerRt {
       console.log(error);
       next(error);
     }
-<<<<<<< HEAD
   }
-=======
-  
->>>>>>> 76bae8e50fda9474269520c1d3679c235a36902d
 
   static async registerSekretariat(req, res, next) {
     //ini pak rt yang mendaftarkan sekertariat setelah login
@@ -143,11 +121,7 @@ class ControllerRt {
       console.log(error);
       next(error);
     }
-<<<<<<< HEAD
   }
-=======
-  
->>>>>>> 76bae8e50fda9474269520c1d3679c235a36902d
 
   // static async approveUser(req, res, next) {
   //     try {
@@ -199,7 +173,6 @@ class ControllerRt {
       console.log(error);
       next(error);
     }
-<<<<<<< HEAD
   }
 
   static async deletSubmission(req, res, next) {
@@ -216,35 +189,6 @@ class ControllerRt {
       res.status(200).json({
         message: `Data Persetujuna Dengan id ${id} berhasil dihapus`,
       });
-=======
-  
-
-  static async approveUser(req, res, next) {
-    try {
-      const { id } = req.params;
-
-      const user = await User.findByPk(id);
-      if (!user) {
-        throw { name: "UserNotFound" };
-      }
-
-      user.status = true; // ubah status user menjadi "Aktif"
-      await user.save();
-
-      const pengajuan = await Submission.findOne({
-        where: {
-          user_id: id,
-        },
-      });
-      if (!pengajuan) {
-        throw { name: "PengajuanNotFound" };
-      }
-
-      pengajuan.status = true; // ubah status pengajuan menjadi "Disetujui"
-      await pengajuan.save();
-
-      res.status(200).json(user);
->>>>>>> 76bae8e50fda9474269520c1d3679c235a36902d
     } catch (error) {
       console.log(error);
       next(error);
@@ -345,169 +289,7 @@ class ControllerRt {
       console.log(error);
       next(error);
     }
-<<<<<<< HEAD
   }
-
-  static async deleteWarga(req, res, next) {
-    try {
-      const { id } = req.params;
-      const user = await User.findByPk(id);
-
-      if (!user) {
-        throw { name: "UserNotFound" };
-      }
-
-      await user.destroy({ where: { id } });
-
-      res.status(200).json({
-        message: `Data warga dengan id ${id} berhasil dihapus`,
-      });
-=======
-  
-
-  static async findAllWarga(req, res, next) {
-    try {
-      // Mendapatkan ID user dari objek request
-      const userId = req.user.id;
-      // Mencari data user berdasarkan ID
-      const user = await User.findByPk(userId);
-      // Jika user tidak ditemukan, lemparkan error
-      if (!user) {
-        throw { name: "UserNotFound" };
-      }
-      // Jika user adalah RT/Sekretariat, tampilkan data warga sesuai dengan RT nya
-      const rtId = user.rt_id;
-      const rt = await Rt.findByPk(rtId, {
-        include: [
-          {
-            model: User,
-            where: { role: { [Op.ne]: "Admin" } }, //hanya yg bukan admin yg ditampilkan
-            attributes: { exclude: ["password"] },
-            include: [
-              {
-                model: Vehicle,
-              },
-              {
-                model: Service,
-              },
-              {
-                model: Comment,
-              },
-              {
-                model: Guest,
-              },
-            ],
-          },
-        ],
-        order: [["createdAt", "DESC"]],
-      });
-
-      res.status(200).json(rt);
->>>>>>> 76bae8e50fda9474269520c1d3679c235a36902d
-    } catch (error) {
-      console.log(error);
-      next(error);
-    }
-  }
-
-<<<<<<< HEAD
-  static async updateWarga(req, res, next) {
-    try {
-      const { id } = req.params;
-=======
-  static async createWarga(req, res, next) {
-    try {
->>>>>>> 76bae8e50fda9474269520c1d3679c235a36902d
-      const {
-        namaLengkap,
-        nomorTelp,
-        email,
-<<<<<<< HEAD
-=======
-        password,
->>>>>>> 76bae8e50fda9474269520c1d3679c235a36902d
-        nomorKk,
-        nomorKtp,
-        status_keluarga,
-        kkImg,
-        ktpImg,
-        photoUrl,
-        aktaImg,
-        agama,
-        jenis_kelamin,
-        status_perkawinan,
-        pekerjaan,
-        tempat_lahir,
-        tanggal_lahir,
-      } = req.body;
-<<<<<<< HEAD
-      const user = await User.findByPk(id);
-      if (!user) {
-        throw {
-          name: "UserNotFound",
-        };
-      }
-
-      // Update user data
-      await User.update(
-        {
-          namaLengkap,
-          nomorTelp,
-          email,
-          nomorKk,
-          nomorKtp,
-          status_keluarga,
-          kkImg,
-          ktpImg,
-          photoUrl,
-          aktaImg,
-          agama,
-          jenis_kelamin,
-          status_perkawinan,
-          pekerjaan,
-          tempat_lahir,
-          tanggal_lahir,
-        },
-        { where: { id } }
-      );
-
-      res.status(201).json({
-        message: "Success to update Profile",
-      });
-=======
-
-      const newUser = await User.create({
-        namaLengkap,
-        nomorTelp,
-        email,
-        password,
-        role: "Warga",
-        nomorKk,
-        nomorKtp,
-        status: true,
-        rt_id: req.user.rt_id,
-        status_keluarga,
-        kkImg,
-        ktpImg,
-        photoUrl,
-        aktaImg,
-        agama,
-        jenis_kelamin,
-        status_perkawinan,
-        pekerjaan,
-        tempat_lahir,
-        tanggal_lahir,
-      });
-
-      res.status(201).json(newUser);
->>>>>>> 76bae8e50fda9474269520c1d3679c235a36902d
-    } catch (error) {
-      console.log(error);
-      next(error);
-    }
-  }
-<<<<<<< HEAD
-=======
 
   static async deleteWarga(req, res, next) {
     try {
@@ -588,7 +370,6 @@ class ControllerRt {
       next(error);
     }
   }
->>>>>>> 76bae8e50fda9474269520c1d3679c235a36902d
 }
 
 module.exports = ControllerRt;
