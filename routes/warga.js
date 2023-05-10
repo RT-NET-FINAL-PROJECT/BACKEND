@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 //USER WARGA
 router.post('/login', ControllerUser.login)
 router.post('/users/register', ControllerUser.register) // setelah register akun sudah tercreate cuman status masih pending
-
+router.get('/users/kk/:id',authentication, ControllerUser.getKeluarga)
 
 //KENDARAAN
 router.post('/users/vehicle',authentication, ControllerUser.addKendaraan)

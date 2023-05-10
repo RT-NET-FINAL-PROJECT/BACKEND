@@ -95,6 +95,28 @@ class ControllerUser {
     }
   }
 
+  static async getKeluarga(req, res, next) {
+    try {
+      const user = await User.findByPk(req.params.id);
+      if (!user) {
+          return res.status(404).json({ message: "USER_NOT_FOUND" });
+      }
+      // Find all users with the same nomorKk
+      const users = await User.findAll({
+          where: {
+              nomorKk: user.nomorKk
+          },
+          attributes: {
+              exclude: ['password']
+          }
+      });
+      
+      res.status(200).json(users);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   //////CRUD USERS////
   static async detailUser(req, res, next) {
     try {
