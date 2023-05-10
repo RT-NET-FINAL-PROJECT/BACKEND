@@ -13,12 +13,12 @@ module.exports = async (error, req, res, next) => {
       status = 404;
       break;
 
-      case "SequelizeValidationError":
-        case "SequelizeUniqueConstainError":
-            status = 400
-            message = error.errors[0].message
-            console.log(error);
-            break;
+    case "SequelizeValidationError":
+    case "SequelizeUniqueConstainError":
+      status = 400;
+      message = error.errors[0].message;
+      console.log(error);
+      break;
 
     case "invalid_email/password":
       message = "Email/Password Salah!";
@@ -40,6 +40,11 @@ module.exports = async (error, req, res, next) => {
       status = 400;
       break;
 
+    case "account_pending":
+      message = "Pendaftaran belum disetujui";
+      status = 401;
+      break;
+      
     case "invalid_email/password":
       message = "Email / password salah";
       status = 401;
@@ -69,7 +74,6 @@ module.exports = async (error, req, res, next) => {
       message = "Layanan tidak ditemukan";
       status = 404;
       break;
-
 
     case "Forbidden":
       message = "Anda tidak memiliki akses!";
