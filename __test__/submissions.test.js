@@ -1,6 +1,5 @@
 const request = require("supertest");
 const app = require("../app");
-const fs = require('fs')
 
 const userRt = {
     email: "bondanherutomo35@gmail.com",

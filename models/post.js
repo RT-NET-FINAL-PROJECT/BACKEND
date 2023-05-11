@@ -13,9 +13,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "rt_id",
       });
 
-      Post.hasMany(models.Payment, {
-        foreignKey: "post_id",
-      });
       Post.hasMany(models.Comment, {
         foreignKey: "post_id",
       });
