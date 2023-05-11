@@ -22,6 +22,7 @@ class ControllerSubmission {
         service_id: service.id,
         keterangan: service.name,
         keperluan,
+        dokumen_pendukung: "default",
         status: "pending",
       });
 
@@ -52,12 +53,12 @@ class ControllerSubmission {
           }
         );
       } else {
-        console.log("lampiran ngga");
+        console.log("lampiran tidak ada");
       }
 
       const message = `Permintaan ${service.name} berhasil dibuat.`;
 
-      res.status(201).json({ message });
+      res.status(201).json({ message, submissionId: newService.id });
     } catch (error) {
       next(error);
     }
@@ -276,7 +277,7 @@ class ControllerSubmission {
         message += "berhasil diproses dan sudah diambil di rumah pak rt";
       }
 
-      await sendEmailToResidents(request);
+      // await sendEmailToResidents(request);
 
       res.status(200).json({ message });
     } catch (error) {

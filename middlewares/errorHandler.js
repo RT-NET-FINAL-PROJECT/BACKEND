@@ -1,7 +1,6 @@
 module.exports = async (error, req, res, next) => {
   let message, status;
 
-  console.log(error);
   switch (error.name) {
     case "NO_INPUT":
       message = "Fields required";
@@ -10,7 +9,7 @@ module.exports = async (error, req, res, next) => {
 
     case "account_pending":
       message = "Akun Sedang Menunggu Persetujuan RT";
-      status = 404;
+      status = 401;
       break;
 
     case "SequelizeValidationError":
@@ -87,5 +86,5 @@ module.exports = async (error, req, res, next) => {
       break;
   }
 
-  res.status(status).json({ message });
+  res.status(status).json({ message, error });
 };

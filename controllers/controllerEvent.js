@@ -71,7 +71,7 @@ class ControllerEvent {
 
   static async createEvent(req, res, next) {
     try {
-      const { name, deskripsi, kategori, lokasi, biaya } = req.body;
+      const { name, deskripsi, kategori, lokasi, biaya, imageUrl } = req.body;
       if (!name || !deskripsi || !kategori || !lokasi || !biaya) {
         throw { name: "NO_INPUT" };
       }
@@ -83,6 +83,7 @@ class ControllerEvent {
         kategori,
         lokasi,
         biaya,
+        imageUrl,
         isPaid: false,
       });
 

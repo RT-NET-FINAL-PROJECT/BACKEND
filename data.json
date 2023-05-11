@@ -32,6 +32,8 @@
             "email": "admin@admin.com",
             "password": "admin123",
             "status_keluarga": "Kepala Keluarga",
+            "nomorKtp": "1244123123",
+            "nomorKk": "123123",
             "status": "approved"
         },
         {
