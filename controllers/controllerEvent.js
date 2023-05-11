@@ -1,5 +1,5 @@
 const { Post, Comment, User } = require("../models");
-const { sendEmailToResidents } = require("../helpers/smtp")
+const { sendEmailToResidents } = require("../helpers/smtp");
 class ControllerEvent {
   static async findAllPosts(req, res, next) {
     try {
@@ -16,7 +16,7 @@ class ControllerEvent {
       next(error);
     }
   }
-  
+
   static async findAllEvent(req, res, next) {
     try {
       let options = {
@@ -72,7 +72,7 @@ class ControllerEvent {
   static async createEvent(req, res, next) {
     try {
       const { name, deskripsi, kategori, lokasi, biaya, imageUrl } = req.body;
-      if (!name || !deskripsi || !kategori || !lokasi || !biaya) {
+      if (!name || !deskripsi || !kategori || !lokasi || !biaya || !imageUrl) {
         throw { name: "NO_INPUT" };
       }
 
@@ -101,16 +101,16 @@ class ControllerEvent {
     //aman
     try {
       const { id } = req.params;
-      const { name, deskripsi, kategori, lokasi, biaya } = req.body;
+      const { name, deskripsi, kategori, lokasi, biaya, imageUrl } = req.body;
 
-      if (!name || !deskripsi || !kategori || !lokasi || !biaya)
+      if (!name || !deskripsi || !kategori || !lokasi || !biaya || !imageUrl)
         throw { name: "NO_INPUT" };
 
       const event = await Post.findByPk(id);
       if (!event) throw { name: "POST_NOT_FOUND" };
 
       await Post.update(
-        { name, deskripsi, kategori, lokasi, biaya },
+        { name, deskripsi, kategori, lokasi, biaya, imageUrl },
         { where: { id: event.id } }
       );
 
